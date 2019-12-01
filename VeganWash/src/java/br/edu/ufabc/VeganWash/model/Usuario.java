@@ -5,17 +5,20 @@
  */
 package br.edu.ufabc.VeganWash.model;
 
+import java.util.List;
+
 /**
  *
  * @author Victor
  */
 public class Usuario {
+
     private int idUsuario;
     private String nome;
     private String email;
     private String senha;
-    private int idTipo;
     private int telefone;
+    private List<Endereco> enderecos;
 
     /**
      * @return the idUsuario
@@ -74,20 +77,6 @@ public class Usuario {
     }
 
     /**
-     * @return the idTipo
-     */
-    public int getIdTipo() {
-        return idTipo;
-    }
-
-    /**
-     * @param idTipo the idTipo to set
-     */
-    public void setIdTipo(int idTipo) {
-        this.idTipo = idTipo;
-    }
-
-    /**
      * @return the telefone
      */
     public int getTelefone() {
@@ -99,5 +88,19 @@ public class Usuario {
      */
     public void setTelefone(int telefone) {
         this.telefone = telefone;
+    }
+
+    /**
+     * @return the enderecos
+     */
+    public List<Endereco> getEnderecos() {
+        return enderecos;
+    }
+
+    /**
+     * @param enderecos the enderecos to set
+     */
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
     }
 }
