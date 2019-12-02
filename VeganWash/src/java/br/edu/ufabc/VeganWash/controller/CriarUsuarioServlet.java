@@ -63,7 +63,7 @@ public class CriarUsuarioServlet extends HttpServlet {
             GenericDAO userDao = new UsuarioDAO(dataSource);
             userDao.create(usuario);          
             dataSource.getConnection().close();
-            paginaDestino = "/index.jsp";
+            paginaDestino = "/sucesso.jsp";
         } catch (Exception ex) {
             ex.printStackTrace();
             paginaDestino = "/erro.jsp";
