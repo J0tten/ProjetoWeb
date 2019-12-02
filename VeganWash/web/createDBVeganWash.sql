@@ -4,14 +4,13 @@ use veganwasher;
 create table Usuario(
 	idUsuario int unique not null auto_increment primary key,
     nome varchar(255),
-    email varchar(255),
+    email varchar(255) unique,
     senha char(40),
-    idTipo int
+    telefone int
     )
 ;
 create table Endereco(
 	idEndereco int unique not null primary key auto_increment,
-    telefone int,
     logradouro varchar(255),
     numeroEndereco int,
     complemento varchar(255),
@@ -25,15 +24,24 @@ create table Endereco(
 
 create table Limpeza(
 	idLimpeza int unique not null primary key auto_increment,
-    nome varchar(50),
+    nome varchar(50) unique,
     descLimpeza varchar(255)
 );
+create table Fornecedor(
+	idFornecedor int unique not null primary key auto_increment,
+    nome varchar(255),
+    cpf int unique,
+    telefone int,
+    email varchar(255) unique,
+    senha char(40)
+);
+
 create table Produto(
 	idProduto int unique not null primary key auto_increment,
-    idUsuario int,
+    idFornecedor int,
 	idLimpeza int,
     valorM2 double,
-    foreign key (idUsuario) REFERENCES Usuario(idUsuario),
+    foreign key (idFornecedor) REFERENCES Fornecedor(idFornecedor),
     foreign key (idLimpeza) REFERENCES Limpeza(idLimpeza)
 );
 create table Pedido(
@@ -48,18 +56,3 @@ create table Pedido(
     foreign key (idUsuario) REFERENCES Usuario(idUsuario)
     )
 ;
-show tables from veganwasher;
-insert into usuario (nome)
-values ("Victor");
-insert into usuario (nome)
-values ("Pedro");
-insert into limpeza (nome)
-values ("Vegana");
-insert into produto(idUsuario, idLimpeza, valorM2)
-values (2,1,30);
-Select * from usuario;
-Select * from limpeza;
-select * from produto;
-insert into pedido(idUsuario, idProduto, status, m2, data, periodo)
-Values ((SELECT idUsuario from usuario where usuario.Nome = "Victor"),(select idProduto from produto,limpeza where produto.idLimpeza=Limpeza.idLimpeza and limpeza.nome = "Vegana"),"Pronto",20,"1994-10-13 00:00:00","Tarde");
-select * from pedido;

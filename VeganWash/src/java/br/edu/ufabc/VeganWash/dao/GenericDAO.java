@@ -4,12 +4,15 @@
  * and open the template in the editor.
  */
 package br.edu.ufabc.VeganWash.dao;
+import java.util.List;
 
 /**
  *
  * @author Victor
  */
-
-public class FornecedorDAO {
-    
+public interface GenericDAO {
+    public void create(Object o);
+    public void delete(Object o);
+    public void update(Object o);
+    public List<Object> read();
 }

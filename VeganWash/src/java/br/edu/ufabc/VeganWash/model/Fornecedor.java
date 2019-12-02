@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ufabc.VeganWash.dao;
+package br.edu.ufabc.VeganWash.model;
 
 /**
  *
  * @author Victor
  */
-
-public class FornecedorDAO {
+public class Fornecedor {
     
 }

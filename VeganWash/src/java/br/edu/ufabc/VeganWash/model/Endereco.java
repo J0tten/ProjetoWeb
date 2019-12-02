@@ -12,7 +12,6 @@ package br.edu.ufabc.VeganWash.model;
 public class Endereco {
 
     private int idEndereco;
-    private int telefone;
     private String logradouro;
     private int numeroEndereco;
     private String complemento;
@@ -20,7 +19,7 @@ public class Endereco {
     private String bairro;
     private String estado;
     private int cep;
-    private Usuario idUsuario;
+    private Usuario usuario;
 
     /**
      * @return the idEndereco
@@ -34,20 +33,6 @@ public class Endereco {
      */
     public void setIdEndereco(int idEndereco) {
         this.idEndereco = idEndereco;
-    }
-
-    /**
-     * @return the telefone
-     */
-    public int getTelefone() {
-        return telefone;
-    }
-
-    /**
-     * @param telefone the telefone to set
-     */
-    public void setTelefone(int telefone) {
-        this.telefone = telefone;
     }
 
     /**
@@ -151,15 +136,15 @@ public class Endereco {
     /**
      * @return the idUsuario
      */
-    public Usuario getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
     /**
      * @param idUsuario the idUsuario to set
      */
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario idUsuario) {
+        this.usuario = idUsuario;
     }
 
 }

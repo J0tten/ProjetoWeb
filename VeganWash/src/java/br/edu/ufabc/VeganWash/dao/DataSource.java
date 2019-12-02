@@ -26,9 +26,9 @@ public class DataSource {
 
         hostname = "localhost";
         port = 3306;
-        database = "VeganWash";
+        database = "VeganWasher";
         username = "root";
-        password = "@brasil@";
+        password = "ufabc";
         try {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database;
