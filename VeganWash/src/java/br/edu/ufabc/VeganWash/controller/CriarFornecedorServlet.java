@@ -1,0 +1,107 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.edu.ufabc.VeganWash.controller;
+
+import br.edu.ufabc.VeganWash.dao.DataSource;
+import br.edu.ufabc.VeganWash.dao.FornecedorDAO;
+import br.edu.ufabc.VeganWash.dao.GenericDAO;
+import br.edu.ufabc.VeganWash.dao.UsuarioDAO;
+import br.edu.ufabc.VeganWash.model.Endereco;
+import br.edu.ufabc.VeganWash.model.Fornecedor;
+import br.edu.ufabc.VeganWash.model.Usuario;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ *
+ * @author Victor
+ */
+public class CriarFornecedorServlet extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String paginaDestino = "/index.jsp";
+        try {
+            String userNome = request.getParameter("txtNome");
+            String userEmail = request.getParameter("txtEmail");
+            String userSenha = request.getParameter("txtSenha");
+            int userTelefone = Integer.parseInt(request.getParameter("txtTelefone"));
+            int userCpf = Integer.parseInt(request.getParameter("txtCpf"));
+            Fornecedor fornecedor = new Fornecedor();
+            fornecedor.setNome(userNome);            
+            fornecedor.setCpf(userCpf);
+            fornecedor.setEmail(userEmail);
+            fornecedor.setTelefone(userTelefone);
+            fornecedor.setSenha(userSenha);
+            
+            DataSource dataSource = new DataSource();
+            GenericDAO userDao = new FornecedorDAO(dataSource);
+            userDao.create(fornecedor);          
+            dataSource.getConnection().close();
+            paginaDestino = "/sucesso.jsp";
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            paginaDestino = "/erro.jsp";
+        } finally {
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(paginaDestino);
+            dispatcher.forward(request, response);
+        }
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}

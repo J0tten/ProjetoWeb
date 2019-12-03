@@ -46,13 +46,16 @@ create table Produto(
 );
 create table Pedido(
 	idPedido int primary key unique not null auto_increment,
-    idProduto int,
     idUsuario int,
     status varchar(255),
-    m2 double,
     data date,
-    periodo varchar(255), 
+    valorPedido float,    
     foreign key (idProduto) REFERENCES Produto(idProduto),
     foreign key (idUsuario) REFERENCES Usuario(idUsuario)
     )
 ;
+create table ItemPedido(
+	idItem int primary key unique not null,
+    idProduto int,
+    m2 float
+);

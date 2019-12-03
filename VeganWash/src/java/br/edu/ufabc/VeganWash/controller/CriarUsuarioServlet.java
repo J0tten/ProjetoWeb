@@ -45,6 +45,7 @@ public class CriarUsuarioServlet extends HttpServlet {
             usuario.setNome(userNome);
             usuario.setEmail(userEmail);
             usuario.setSenha(userSenha);
+            usuario.setTelefone(userTelefone);
             
             // tratar endereços
             Endereco endC = new Endereco();

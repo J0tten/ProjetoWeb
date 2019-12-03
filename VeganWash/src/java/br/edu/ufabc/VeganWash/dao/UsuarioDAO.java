@@ -9,13 +9,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import br.edu.ufabc.VeganWash.model.*;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
  *
  * @author Victor
  */
-public class UsuarioDAO implements GenericDAO{
+public class UsuarioDAO implements GenericDAO {
 
     private final DataSource dataSource;
 
@@ -72,6 +73,30 @@ public class UsuarioDAO implements GenericDAO{
     @Override
     public void update(Object o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean Login(Object o) throws SQLException, ClassNotFoundException{
+        try {
+            Usuario c = (Usuario) o;
+            boolean i;
+            String SQL = "SELECT idusuario, email, senha FROM usuario where (email = ? and senha = ?)";
+            PreparedStatement stm = dataSource.getConnection().prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            stm.setString(1, c.getEmail());
+            stm.setString(2, c.getSenha());
+            ResultSet result = stm.executeQuery();
+            if (result.next()) {
+                System.out.println("Login efetuado");
+                i = true;
+            } else {
+                System.out.println("login falhou");
+                i = false;
+            }
+            stm.close();
+            return i;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
 
     @Override
