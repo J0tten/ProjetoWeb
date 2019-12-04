@@ -6,9 +6,8 @@ create table Usuario(
     nome varchar(255),
     email varchar(255) unique,
     senha char(40),
-    telefone int
-    )
-;
+    telefone varchar(255)
+    );
 create table Endereco(
 	idEndereco int unique not null primary key auto_increment,
     logradouro varchar(255),
@@ -22,7 +21,7 @@ create table Endereco(
     foreign key (idUsuario) REFERENCES Usuario(idUsuario)
 );
 
-create table Limpeza(
+create table Limpeza(limpezausuario
 	idLimpeza int unique not null primary key auto_increment,
     nome varchar(50) unique,
     descLimpeza varchar(255)
@@ -46,16 +45,17 @@ create table Produto(
 );
 create table Pedido(
 	idPedido int primary key unique not null auto_increment,
+    idProduto int,
     idUsuario int,
     status varchar(255),
+    m2 double,
     data date,
-    valorPedido float,    
+    periodo varchar(255), 
     foreign key (idProduto) REFERENCES Produto(idProduto),
     foreign key (idUsuario) REFERENCES Usuario(idUsuario)
-    )
-;
-create table ItemPedido(
-	idItem int primary key unique not null,
-    idProduto int,
-    m2 float
-);
+    );
+
+
+INSERT INTO limpeza VALUES(null, 'Limpeza Simples', 'Limpeza simples, remoção de poeira');
+INSERT INTO limpeza VALUES(null, 'Lavagem Completa', 'Lavagem completa, com lavagem de pisos frios e banheiros');
+INSERT INTO limpeza VALUES(null, 'Lavagem Super Extreme Vegana', 'Nosso carro-chefe, utilizamos produtos orgânicos e veganos para deixar seu ambiente ecologicamente limpo');
