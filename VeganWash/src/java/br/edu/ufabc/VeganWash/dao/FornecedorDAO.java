@@ -9,6 +9,7 @@ import br.edu.ufabc.VeganWash.model.Fornecedor;
 import br.edu.ufabc.VeganWash.model.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
@@ -53,6 +54,30 @@ public class FornecedorDAO implements GenericDAO {
     @Override
     public List<Object> read() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public boolean Login(Object o) throws SQLException, ClassNotFoundException{
+        try {
+            Fornecedor c = (Fornecedor) o;
+            boolean i;
+            String SQL = "SELECT idfornecedor, email, senha FROM fornecedor where (email = ? and senha = ?)";
+            PreparedStatement stm = dataSource.getConnection().prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            stm.setString(1, c.getEmail());
+            stm.setString(2, c.getSenha());
+            ResultSet result = stm.executeQuery();
+            if (result.next()) {
+                System.out.println("Login efetuado");
+                i = true;
+            } else {
+                System.out.println("Login falhou");
+                i = false;
+            }
+            stm.close();
+            return i;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
 
 }
