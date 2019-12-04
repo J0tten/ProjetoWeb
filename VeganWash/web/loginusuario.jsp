@@ -24,7 +24,7 @@
 
                 <div class="col-md-8">
                     <h1 class="text-center">
-                        Crie sua conta	
+                        Login de Cliente	
                     </h1>
                 </div>
             </div>
@@ -36,19 +36,31 @@
                     <form role="form" action="login" method="post">
                         <div class="form-group">
                             <label for="email">
-                                Seu Email
+                                Email
                             </label>
                             <input type="email" class="form-control" id="email" name="txtEmail"/>
                         </div>
                         <div class="form-group">
                             <label for="senha">
-                                Digite sua Senha
+                                Senha
                             </label>
                             <input type="password" class="form-control" id="senha" name="txtSenha"/>
                         </div>
                         <button type="submit" class="btn btn-primary">
-                            Enviar Dados
+                            Enviar
                         </button>
+                        <hr>
+                        <div class="col-md-8">
+                            <h1 class="text-center">
+                                Não é um cliente cadastrado? Cadastre-se <a href="newuser.jsp">AQUI</a>	
+                            </h1>
+                        </div>
+                        <hr>
+                        <div class="col-md-8">
+                            <h1 class="text-center">
+                                <a href="loginfornecedor.jsp">Área do Fornecedor</a>	
+                            </h1>
+                        </div>
                     </form>
                 </div>
                 <div class="col-md-2">

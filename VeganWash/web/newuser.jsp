@@ -44,7 +44,7 @@
 
                 <div class="col-md-8">
                     <h1 class="text-center">
-                        Seja um Fornecedor	
+                        Crie sua conta:	
                     </h1>
                 </div>
             </div>
@@ -129,7 +129,6 @@
                         </div>
                         <button type="submit" class="btn btn-primary">
                             Enviar Dados
-
                         </button>
                     </form>
                 </div>

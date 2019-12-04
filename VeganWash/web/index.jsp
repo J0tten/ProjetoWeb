@@ -14,5 +14,6 @@ and open the template in the editor.
     </head>
     <body>
         <div>Vamos fazer isso de um jeito natural, sem carne no processo.</div>
-    </body>
+        <button onclick="location.href = 'loginusuario.jsp';" id="myButton" class="float-left submit-button" >Faça um Orçamento!</button>
+        </body>
 </html>
