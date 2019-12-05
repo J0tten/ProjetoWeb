@@ -33,7 +33,7 @@
                 <div class="col-md-2">
                 </div>
                 <div class="col-md-8">
-                    <form role="form" action="login" method="post">
+                    <form role="form" action="loginusuario" method="post">
                         <div class="form-group">
                             <label for="email">
                                 Email
@@ -49,7 +49,13 @@
                         <button type="submit" class="btn btn-primary">
                             Enviar
                         </button>
+                        <div class="col-md-8">
+                            <h1 class="text-center">
+                                <a href="senhausuario.jsp">Esqueci a senha</a>	
+                            </h1>
+                        </div>
                         <hr>
+
                         <div class="col-md-8">
                             <h1 class="text-center">
                                 Não é um cliente cadastrado? Cadastre-se <a href="newuser.jsp">AQUI</a>	

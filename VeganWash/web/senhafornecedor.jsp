@@ -1,7 +1,7 @@
 <%-- 
-    Document   : login
-    Created on : 03/12/2019, 02:05:35
-    Author     : Victor
+    Document   : esqueciUsuario
+    Created on : Dec 5, 2019, 1:31:00 PM
+    Author     : GUILHERME
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,7 +14,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>.: Login Fornecedor :.</title>
+        <title>.: Esqueci a senha - Usuario :.</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
     </head>
@@ -24,7 +24,7 @@
 
                 <div class="col-md-8">
                     <h1 class="text-center">
-                        Login de Fornecedor	
+                        Mude sua senha	
                     </h1>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 <div class="col-md-2">
                 </div>
                 <div class="col-md-8">
-                    <form role="form" action="loginfornecedor" method="post">
+                    <form role="form" action="senhafornecedor" method="post">
                         <div class="form-group">
                             <label for="email">
                                 Email
@@ -42,31 +42,20 @@
                         </div>
                         <div class="form-group">
                             <label for="senha">
+                                Senha Antiga
+                            </label>
+                            <input type="password" class="form-control" id="senha" name="txtSenhaAntiga"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="senha">
                                 Senha
                             </label>
-                            <input type="password" class="form-control" id="senha" name="txtSenha"/>
+                            <input type="password" class="form-control" id="senha" name="txtNewSenha"/>
                         </div>
                         <button type="submit" class="btn btn-primary">
                             Enviar
                         </button>
-                        <div class="col-md-8">
-                            <h1 class="text-center">
-                                <a href="senhafornecedor.jsp">Esqueci a senha</a>	
-                            </h1>
-                        </div>
                         <hr>
-
-                        <div class="col-md-8">
-                            <h1 class="text-center">
-                                Não é um de nossos fornecedores cadastrados? Cadastre-se <a href="newfornecedor.jsp">AQUI</a>	
-                            </h1>
-                        </div>
-                        <hr>
-                        <div class="col-md-8">
-                            <h1 class="text-center">
-                                <a href="loginusuario.jsp">Área do Cliente</a>	
-                            </h1>
-                        </div>
                     </form>
                 </div>
                 <div class="col-md-2">

@@ -48,7 +48,18 @@ public class FornecedorDAO implements GenericDAO {
 
     @Override
     public void update(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Fornecedor c = (Fornecedor) o;
+                String UPDATE = "UPDATE Fornecedor SET senha=? WHERE email=?";
+                PreparedStatement stmUpdate = dataSource.getConnection().prepareStatement(UPDATE);
+                stmUpdate.setString(1, c.getSenha());
+                stmUpdate.setString(2, c.getEmail());
+                int result = stmUpdate.executeUpdate();
+                System.out.println("Senha atualizada");
+                stmUpdate.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
@@ -67,6 +78,13 @@ public class FornecedorDAO implements GenericDAO {
             ResultSet result = stm.executeQuery();
             if (result.next()) {
                 System.out.println("Login efetuado");
+                String idFornecedor = "SELECT idFornecedor FROM fornecedor where email = ?";
+                PreparedStatement stmID = dataSource.getConnection().prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+                stmID.setString(1, c.getEmail());
+                ResultSet resultID = stmID.executeQuery();
+                long converte = resultID.getLong(1);               
+                int iD = (int)converte;
+                c.setIdFornecedor(iD);
                 i = true;
             } else {
                 System.out.println("Login falhou");

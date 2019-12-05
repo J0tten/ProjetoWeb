@@ -28,8 +28,8 @@ public class UsuarioDAO implements GenericDAO {
     public void create(Object o) {
         try {
             Usuario c = (Usuario) o;
-            String SQL = "INSERT INTO usuario values (null, ?, ?, ?, ?)";
-            PreparedStatement stm = dataSource.getConnection().prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            String CREATE = "INSERT INTO usuario values (null, ?, ?, ?, ?)";
+            PreparedStatement stm = dataSource.getConnection().prepareStatement(CREATE, Statement.RETURN_GENERATED_KEYS);
             stm.setString(1, c.getNome());
             stm.setString(2, c.getEmail());
             stm.setString(3, c.getSenha());
@@ -43,8 +43,8 @@ public class UsuarioDAO implements GenericDAO {
                 c.setIdUsuario(rs.getInt(1));
                 for (Endereco e : c.getEnderecos()) {
                     e.setUsuario(c);
-                    SQL = "INSERT INTO Endereco values (null, ?,?,?,?,?,?,?,?)";
-                    stm = dataSource.getConnection().prepareStatement(SQL);
+                    CREATE = "INSERT INTO Endereco values (null, ?,?,?,?,?,?,?,?)";
+                    stm = dataSource.getConnection().prepareStatement(CREATE);
                     stm.setString(1, e.getLogradouro());
                     stm.setInt(2, e.getNumeroEndereco());
                     stm.setString(3, e.getComplemento());
@@ -72,10 +72,21 @@ public class UsuarioDAO implements GenericDAO {
 
     @Override
     public void update(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Usuario c = (Usuario) o;
+                String UPDATE = "UPDATE Usuario SET senha=? WHERE email=?";
+                PreparedStatement stmUpdate = dataSource.getConnection().prepareStatement(UPDATE);
+                stmUpdate.setString(1, c.getSenha());
+                stmUpdate.setString(2, c.getEmail());
+                int result = stmUpdate.executeUpdate();
+                System.out.println("Senha atualizada");
+                stmUpdate.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
-    public boolean Login(Object o) throws SQLException, ClassNotFoundException{
+    public boolean Login(Object o) throws SQLException, ClassNotFoundException {
         try {
             Usuario c = (Usuario) o;
             boolean i;
