@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>VeganClean - LoginForn</title>
-    <link rel="icon" href="https://png.pngtree.com/element_pic/17/03/03/7aaa411575b231bb11a9dae2798450b4.jpg">
+    <link rel="icon" href="./Imagens/Icon-folinha.jpg">
 
     <meta name="description" content="x">
     <meta name="author" content="WashiWash">

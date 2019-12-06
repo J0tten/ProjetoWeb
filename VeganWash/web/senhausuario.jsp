@@ -15,6 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>.: Esqueci a senha - Fornecedor :.</title>
+        <link rel="icon" href="./Imagens/Icon-folinha.jpg">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
     </head>

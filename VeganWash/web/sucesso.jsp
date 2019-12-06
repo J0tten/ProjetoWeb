@@ -11,6 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="refresh" content="5;url=/VeganWash/index.jsp" />
         <title>Planta>Carne</title>
+        <link rel="icon" href="./Imagens/Icon-folinha.jpg">
     </head>
     <body>
         <ul class="nav">
