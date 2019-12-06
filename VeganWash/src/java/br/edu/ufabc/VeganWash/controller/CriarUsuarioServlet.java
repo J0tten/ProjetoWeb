@@ -39,7 +39,7 @@ public class CriarUsuarioServlet extends HttpServlet {
             String userNome = request.getParameter("txtNome");
             String userEmail = request.getParameter("txtEmail");
             String userSenha = request.getParameter("txtSenha");
-            int userTelefone = Integer.parseInt(request.getParameter("txtTelefone"));
+            String userTelefone = request.getParameter("txtTelefone");
             Usuario usuario = new Usuario();
             usuario.setEnderecos(new ArrayList<Endereco>());            
             usuario.setNome(userNome);
