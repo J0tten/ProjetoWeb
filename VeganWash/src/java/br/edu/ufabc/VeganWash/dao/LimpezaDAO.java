@@ -5,10 +5,12 @@
  */
 package br.edu.ufabc.VeganWash.dao;
 
+import br.edu.ufabc.VeganWash.model.Fornecedor;
 import br.edu.ufabc.VeganWash.model.Limpeza;
 import br.edu.ufabc.VeganWash.model.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +35,23 @@ public class LimpezaDAO {
     public void update(Object o) {
     }
 
+    public int buscaIdLimpeza(Object o){
+        try {
+            Fornecedor c = (Fornecedor) o;
+            int idForn;
+            String SQL = "SELECT idfornecedor FROM fornecedor where (email = ?)";
+            PreparedStatement stm = dataSource.getConnection().prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            stm.setString(1, c.getEmail());
+            ResultSet result = stm.executeQuery();
+            idForn = Integer.parseInt(result.getString("idFornecedor"));
+            stm.close();
+            return idForn;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return 0;
+        }
+    }
+    
     public List<Object> read() {
          List<Object> result = null;
         try {

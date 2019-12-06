@@ -52,7 +52,7 @@ public class CriarProdutoServlet extends HttpServlet {
             
             fornDao.create(forn);
             dataSource.getConnection().close();
-            paginaDestino = "/sucessoProd.jsp";
+            paginaDestino = "/sucesso.jsp";
         } catch (Exception ex) {
             ex.printStackTrace();
             paginaDestino = "/erro.jsp";

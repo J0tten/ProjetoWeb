@@ -44,26 +44,36 @@ public class FornecedorDAO implements GenericDAO {
 
     @Override
     public void delete(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To  sdasdfachange body of generated methods, choose Tools | Templates.
+        try {
+            Usuario c = (Usuario) o;
+            String delete = "DELETE FROM Fornecedor WHERE (cpf = ? and email = ?)";
+            PreparedStatement stmDelete = dataSource.getConnection().prepareCall(delete);
+            stmDelete.setString(1, c.getEmail());
+            stmDelete.executeUpdate();
+            System.out.println("Fornecedor deleteado");
+            stmDelete.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
     public void update(Object o) {
         try {
             Fornecedor c = (Fornecedor) o;
-                String UPDATE = "UPDATE Fornecedor SET senha=? WHERE email=?";
-                PreparedStatement stmUpdate = dataSource.getConnection().prepareStatement(UPDATE);
-                stmUpdate.setString(1, c.getSenha());
-                stmUpdate.setString(2, c.getEmail());
-                int result = stmUpdate.executeUpdate();
-                System.out.println("Senha atualizada");
-                stmUpdate.close();
+            String UPDATE = "UPDATE Fornecedor SET senha=? WHERE email=?";
+            PreparedStatement stmUpdate = dataSource.getConnection().prepareStatement(UPDATE);
+            stmUpdate.setString(1, c.getSenha());
+            stmUpdate.setString(2, c.getEmail());
+            int result = stmUpdate.executeUpdate();
+            System.out.println("Senha atualizada");
+            stmUpdate.close();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    public int pegarIdFornecedor(Object o){
+    public int pegarIdFornecedor(Object o) {
         try {
             Fornecedor c = (Fornecedor) o;
             int idForn;
@@ -79,7 +89,7 @@ public class FornecedorDAO implements GenericDAO {
             return 0;
         }
     }
-    
+
     @Override
     public List<Object> read() {
         List<Object> result = null;
@@ -104,8 +114,8 @@ public class FornecedorDAO implements GenericDAO {
         }
         return result;
     }
-    
-    public boolean Login(Object o) throws SQLException, ClassNotFoundException{
+
+    public boolean Login(Object o) throws SQLException, ClassNotFoundException {
         try {
             Fornecedor c = (Fornecedor) o;
             boolean i;
@@ -120,8 +130,8 @@ public class FornecedorDAO implements GenericDAO {
                 PreparedStatement stmID = dataSource.getConnection().prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
                 stmID.setString(1, c.getEmail());
                 ResultSet resultId = stmID.executeQuery();
-                long converte = resultId.getLong(1);               
-                int iD = (int)converte;
+                long converte = resultId.getLong(1);
+                int iD = (int) converte;
                 c.setIdFornecedor(iD);
                 i = true;
             } else {
