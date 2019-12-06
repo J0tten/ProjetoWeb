@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import br.edu.ufabc.VeganWash.model.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,7 +34,7 @@ public class UsuarioDAO implements GenericDAO {
             stm.setString(1, c.getNome());
             stm.setString(2, c.getEmail());
             stm.setString(3, c.getSenha());
-            stm.setInt(4, c.getTelefone());
+            stm.setString(4, c.getTelefone());
             int result = stm.executeUpdate();
             if (result == 0) {
                 throw new RuntimeException("Falha ao inserir - registros duplicados");
@@ -74,13 +75,13 @@ public class UsuarioDAO implements GenericDAO {
     public void update(Object o) {
         try {
             Usuario c = (Usuario) o;
-                String UPDATE = "UPDATE Usuario SET senha=? WHERE email=?";
-                PreparedStatement stmUpdate = dataSource.getConnection().prepareStatement(UPDATE);
-                stmUpdate.setString(1, c.getSenha());
-                stmUpdate.setString(2, c.getEmail());
-                int result = stmUpdate.executeUpdate();
-                System.out.println("Senha atualizada");
-                stmUpdate.close();
+            String UPDATE = "UPDATE Usuario SET senha=? WHERE email=?";
+            PreparedStatement stmUpdate = dataSource.getConnection().prepareStatement(UPDATE);
+            stmUpdate.setString(1, c.getSenha());
+            stmUpdate.setString(2, c.getEmail());
+            int result = stmUpdate.executeUpdate();
+            System.out.println("Senha atualizada");
+            stmUpdate.close();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -112,6 +113,26 @@ public class UsuarioDAO implements GenericDAO {
 
     @Override
     public List<Object> read() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Object> result = null;
+        try {
+            String sql = "SELECT * FROM usuario";
+            PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            result = new ArrayList<>();
+            while (rs.next()) {
+                Usuario p = new Usuario();
+                p.setIdUsuario(rs.getInt("idUsuario")); // aqui é o nome da coluna na tablea
+                p.setEmail(rs.getString("txtEmail"));
+                p.setSenha(rs.getString("txtSenha"));
+                p.setTelefone(rs.getString("txtTelefone"));
+                result.add(p);
+            }
+            rs.close();
+            stm.close();
+        } catch (Exception ex) {
+            System.out.println("PRODUTODAO.READ - erro ao recuperar");
+            System.out.println(ex.getMessage());
+        }
+        return result;
     }
 }

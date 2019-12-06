@@ -21,7 +21,7 @@ create table Endereco(
     foreign key (idUsuario) REFERENCES Usuario(idUsuario)
 );
 
-create table Limpeza(limpezausuario
+create table Limpeza(
 	idLimpeza int unique not null primary key auto_increment,
     nome varchar(50) unique,
     descLimpeza varchar(255)

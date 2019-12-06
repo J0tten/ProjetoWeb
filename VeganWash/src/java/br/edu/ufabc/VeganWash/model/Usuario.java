@@ -17,7 +17,7 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
-    private int telefone;
+    private String telefone;
     private List<Endereco> enderecos;
 
     /**
@@ -79,14 +79,14 @@ public class Usuario {
     /**
      * @return the telefone
      */
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
     /**
      * @param telefone the telefone to set
      */
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
