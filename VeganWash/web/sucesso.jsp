@@ -13,6 +13,11 @@
         <title>Planta>Carne</title>
     </head>
     <body>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" href='index.html'>Home</a>
+            </li>
+        </ul>
         <h1>Criou usuario!</h1>
     </body>
 </html>

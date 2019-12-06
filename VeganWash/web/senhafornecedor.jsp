@@ -23,6 +23,11 @@
             <div class="row" id="titulo">
 
                 <div class="col-md-8">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href='index.html'>Home</a>
+                        </li>
+                    </ul>
                     <h1 class="text-center">
                         Mude sua senha	
                     </h1>

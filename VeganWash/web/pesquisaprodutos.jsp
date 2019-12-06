@@ -12,6 +12,11 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" href='index.html'>Home</a>
+            </li>
+        </ul>
         <h1>Funcionou Login!</h1>
         <%
             String name = request.getParameter("txtEmail");
