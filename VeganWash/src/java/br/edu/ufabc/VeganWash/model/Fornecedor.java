@@ -5,6 +5,8 @@
  */
 package br.edu.ufabc.VeganWash.model;
 
+import java.util.List;
+
 /**
  *
  * @author Victor
@@ -12,10 +14,11 @@ package br.edu.ufabc.VeganWash.model;
 public class Fornecedor {
     private int idFornecedor;
     private String nome;
-    private int cpf;
-    private int telefone;
+    private String cpf;
+    private String telefone;
     private String email;
     private String senha;
+    private List<Produto> produtos;
 
     /**
      * @return the idFornecedor
@@ -48,28 +51,28 @@ public class Fornecedor {
     /**
      * @return the cpf
      */
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
     /**
      * @param cpf the cpf to set
      */
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
     /**
      * @return the telefone
      */
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
     /**
      * @param telefone the telefone to set
      */
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
@@ -99,5 +102,19 @@ public class Fornecedor {
      */
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    /**
+     * @return the produtos
+     */
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    /**
+     * @param produtos the produtos to set
+     */
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
 }
