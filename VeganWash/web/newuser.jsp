@@ -8,6 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>.: Novo Usuário :.</title>
+        <link rel="icon" href="./Imagens/Icon-folinha.jpg">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <script type="text/javascript">
