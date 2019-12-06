@@ -42,12 +42,6 @@
                         </div>
                         <div class="form-group">
                             <label for="senha">
-                                Senha Antiga
-                            </label>
-                            <input type="password" class="form-control" id="senha" name="txtSenhaAntiga"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="senha">
                                 Senha
                             </label>
                             <input type="password" class="form-control" id="senha" name="txtNewSenha"/>

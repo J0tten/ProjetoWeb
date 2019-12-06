@@ -39,7 +39,6 @@ public class SenhaUsuarioServlet extends HttpServlet {
         String paginaDestino = "/index.jsp";
         try {
             String userEmail = request.getParameter("txtEmail");
-            String userSenhaAntiga = request.getParameter("txtSenhaAntiga");
             String userNewSenha = request.getParameter("txtNewSenha");
             Usuario usuario = new Usuario();
             usuario.setEmail(userEmail);

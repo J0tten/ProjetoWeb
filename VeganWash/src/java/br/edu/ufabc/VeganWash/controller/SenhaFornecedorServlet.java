@@ -37,7 +37,6 @@ public class SenhaFornecedorServlet extends HttpServlet {
         String paginaDestino = "/index.jsp";
         try {
             String fornecedorEmail = request.getParameter("txtEmail");
-            String fornecedorSenhaAntiga = request.getParameter("txtSenhaAntiga");
             String fornecedorNewSenha = request.getParameter("txtNewSenha");
             Fornecedor fornecedor = new Fornecedor();
             fornecedor.setEmail(fornecedorEmail);
