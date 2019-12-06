@@ -50,8 +50,7 @@ public class CriarProdutoServlet extends HttpServlet {
             FornecedorDAO fornDao = new FornecedorDAO(dataSource);
             int dadosForn = fornDao.pegarIdFornecedor(forn);
             
-            GenericDAO userDao = new UsuarioDAO(dataSource);
-            ProdutoDao.create(usuario);
+            fornDao.create(forn);
             dataSource.getConnection().close();
             paginaDestino = "/sucesso.jsp";
         } catch (Exception ex) {
