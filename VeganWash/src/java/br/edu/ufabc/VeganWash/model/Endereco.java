@@ -18,7 +18,7 @@ public class Endereco {
     private String cidade;
     private String bairro;
     private String estado;
-    private int cep;
+    private String cep;
     private Usuario usuario;
 
     /**
@@ -122,14 +122,14 @@ public class Endereco {
     /**
      * @return the cep
      */
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
 
     /**
      * @param cep the cep to set
      */
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 

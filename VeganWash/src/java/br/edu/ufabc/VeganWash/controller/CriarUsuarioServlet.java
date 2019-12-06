@@ -49,7 +49,7 @@ public class CriarUsuarioServlet extends HttpServlet {
             
             // tratar endereços
             Endereco endC = new Endereco();
-            endC.setCep(Integer.parseInt(request.getParameter("txtCep")));
+            endC.setCep(request.getParameter("txtCep"));
             endC.setLogradouro(request.getParameter("txtLogradouro"));
             endC.setNumeroEndereco(Integer.parseInt(request.getParameter("txtNumero")));
             endC.setComplemento(request.getParameter("txtComplemento"));
