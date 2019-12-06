@@ -5,11 +5,14 @@
  */
 package br.edu.ufabc.VeganWash.dao;
 
+import br.edu.ufabc.VeganWash.model.Endereco;
 import br.edu.ufabc.VeganWash.model.Fornecedor;
 import br.edu.ufabc.VeganWash.model.Limpeza;
 import br.edu.ufabc.VeganWash.model.Produto;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -57,7 +60,26 @@ public class ProdutoDAO implements GenericDAO {
 
     @Override
     public List<Object> read() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Object> result = null;
+        try {
+            String sql = "SELECT * FROM Produto";
+            PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            result = new ArrayList<>();
+            while (rs.next()) {
+                Produto p = new Produto();
+                p.setIdProduto(Integer.parseInt(rs.getString("idProduto"))); // aqui é o nome da coluna na tablea
+                p.setValorM2(Integer.parseInt(rs.getString("valorM2")));
+                
+                result.add(p);
+            }
+            rs.close();
+            stm.close();
+        } catch (Exception ex) {
+            System.out.println("PRODUTODAO.READ - erro ao recuperar");
+            System.out.println(ex.getMessage());
+        }
+        return result;
     }
 
 }
