@@ -52,7 +52,7 @@ public class UsuarioDAO implements GenericDAO {
                     stm.setString(4, e.getCidade());
                     stm.setString(5, e.getBairro());
                     stm.setString(6, e.getEstado());
-                    stm.setInt(7, e.getCep());
+                    stm.setString(7, e.getCep());
                     stm.setInt(8, e.getUsuario().getIdUsuario());
                     stm.executeUpdate();
                 }
