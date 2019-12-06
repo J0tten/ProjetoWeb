@@ -29,8 +29,8 @@ public class FornecedorDAO implements GenericDAO {
             String SQL = "INSERT INTO fornecedor values (null, ?, ?, ?, ?, ?)";
             PreparedStatement stm = dataSource.getConnection().prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             stm.setString(1, c.getNome());
-            stm.setInt(2, c.getCpf());
-            stm.setInt(3, c.getTelefone());
+            stm.setString(2, c.getCpf());
+            stm.setString(3, c.getTelefone());
             stm.setString(4, c.getEmail());
             stm.setString(5, c.getSenha());
             int result = stm.executeUpdate();
@@ -63,6 +63,23 @@ public class FornecedorDAO implements GenericDAO {
         }
     }
 
+    public int pegarIdFornecedor(Object o){
+        try {
+            Fornecedor c = (Fornecedor) o;
+            int idForn;
+            String SQL = "SELECT idfornecedor FROM fornecedor where (email = ?)";
+            PreparedStatement stm = dataSource.getConnection().prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            stm.setString(1, c.getEmail());
+            ResultSet result = stm.executeQuery();
+            idForn = Integer.parseInt(result.getString("idFornecedor"));
+            stm.close();
+            return idForn;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return 0;
+        }
+    }
+    
     @Override
     public List<Object> read() {
         List<Object> result = null;
@@ -74,9 +91,9 @@ public class FornecedorDAO implements GenericDAO {
             while (rs.next()) {
                 Fornecedor p = new Fornecedor();
                 p.setIdFornecedor(rs.getInt("idFornecedor")); // aqui é o nome da coluna na tablea
-                p.setEmail(rs.getString("txtEmail"));
-                p.setSenha(rs.getString("txtSenha"));
-                p.setTelefone(rs.getInt("txtTelefone"));
+                p.setEmail(rs.getString("email"));
+                p.setSenha(rs.getString("Senha"));
+                p.setTelefone(rs.getString("telefone"));
                 result.add(p);
             }
             rs.close();
