@@ -68,18 +68,28 @@ public class UsuarioDAO implements GenericDAO {
 
     @Override
     public void delete(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            Usuario c =(Usuario) o;
+            String delete = "DELETE FROM Usuario WHERE email = ?";
+            PreparedStatement stmDelete = dataSource.getConnection().prepareCall(delete);
+            stmDelete.setString(1, c.getEmail());
+            stmDelete.executeUpdate();
+            System.out.println("Usuário deleteado");
+            stmDelete.close();
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     @Override
     public void update(Object o) {
         try {
             Usuario c = (Usuario) o;
-            String UPDATE = "UPDATE Usuario SET senha=? WHERE email=?";
-            PreparedStatement stmUpdate = dataSource.getConnection().prepareStatement(UPDATE);
+            String Update = "UPDATE Usuario SET senha=? WHERE email=?";
+            PreparedStatement stmUpdate = dataSource.getConnection().prepareStatement(Update);
             stmUpdate.setString(1, c.getSenha());
             stmUpdate.setString(2, c.getEmail());
-            int result = stmUpdate.executeUpdate();
+            stmUpdate.executeUpdate();
             System.out.println("Senha atualizada");
             stmUpdate.close();
         } catch (Exception ex) {
@@ -130,7 +140,7 @@ public class UsuarioDAO implements GenericDAO {
             rs.close();
             stm.close();
         } catch (Exception ex) {
-            System.out.println("PRODUTODAO.READ - erro ao recuperar");
+            System.out.println("Usuario.READ - erro ao recuperar");
             System.out.println(ex.getMessage());
         }
         return result;
