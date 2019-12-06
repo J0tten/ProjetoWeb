@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -71,7 +72,9 @@ public class LoginFornecedorServlet extends HttpServlet {
             FornecedorDAO fornecedorDao = new FornecedorDAO(dataSource);
             boolean status = fornecedorDao.Login(fornecedor);
             if (status == true) {
-                paginaDestino = "/pesquisaprodutos.jsp";
+                paginaDestino = "/meuspedidos.jsp";
+                 HttpSession session = request.getSession(true);
+                session.setAttribute("idUser", fornecedor.getIdFornecedor());
             } else {
                 paginaDestino = "/erro.jsp";
             }

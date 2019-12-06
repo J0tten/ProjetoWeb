@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -77,6 +78,8 @@ public class LoginUsuarioServlet extends HttpServlet {
             boolean status = userDao.Login(usuario);
             if (status == true) {
                 paginaDestino = "/pesquisaprodutos.jsp";
+                HttpSession session = request.getSession(true);
+                session.setAttribute("idUser", usuario.getIdUsuario());
             } else {
                 paginaDestino = "/erro.jsp";
             }
