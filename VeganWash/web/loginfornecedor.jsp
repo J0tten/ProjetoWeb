@@ -38,13 +38,13 @@
                             <label for="email">
                                 Email
                             </label>
-                            <input type="email" class="form-control" id="email" name="txtEmail"/>
+                            <input type="email" class="form-control" id="email" name="emailForn"/>
                         </div>
                         <div class="form-group">
                             <label for="senha">
                                 Senha
                             </label>
-                            <input type="password" class="form-control" id="senha" name="txtSenha"/>
+                            <input type="password" class="form-control" id="senha" name="senhaForn"/>
                         </div>
                         <button type="submit" class="btn btn-primary">
                             Enviar
