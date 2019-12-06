@@ -8,9 +8,11 @@ package br.edu.ufabc.VeganWash.controller;
 import br.edu.ufabc.VeganWash.dao.DataSource;
 import br.edu.ufabc.VeganWash.dao.FornecedorDAO;
 import br.edu.ufabc.VeganWash.dao.GenericDAO;
+import br.edu.ufabc.VeganWash.dao.LimpezaDAO;
 import br.edu.ufabc.VeganWash.dao.UsuarioDAO;
 import br.edu.ufabc.VeganWash.model.Endereco;
 import br.edu.ufabc.VeganWash.model.Fornecedor;
+import br.edu.ufabc.VeganWash.model.Limpeza;
 import br.edu.ufabc.VeganWash.model.Produto;
 import br.edu.ufabc.VeganWash.model.Usuario;
 import java.io.IOException;
@@ -47,9 +49,12 @@ public class CriarProdutoServlet extends HttpServlet {
             forn.getProdutos().add(produto);
 
             DataSource dataSource = new DataSource();
+            LimpezaDAO limpDao = new LimpezaDAO(dataSource);
             FornecedorDAO fornDao = new FornecedorDAO(dataSource);
-            int dadosForn = fornDao.pegarIdFornecedor(forn);
+            Limpeza dadosLimp = (Limpeza) limpDao.read(lavagem);
+            Fornecedor dadosForn = (Fornecedor) fornDao.read(forn.getEmail());
             
+            produto.setFornecedor(forn);
             fornDao.create(forn);
             dataSource.getConnection().close();
             paginaDestino = "/sucesso.jsp";
