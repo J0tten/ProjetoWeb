@@ -11,11 +11,12 @@ package br.edu.ufabc.VeganWash.model;
  */
 public class Limpeza {
     private int idLimpeza;
+    private String nomeLimpeza;
     private String descLimpeza;
 
     /**
      * @return the idLimpeza
-     */
+     */ 
     public int getIdLimpeza() {
         return idLimpeza;
     }
@@ -39,6 +40,13 @@ public class Limpeza {
      */
     public void setDescLimpeza(String descLimpeza) {
         this.descLimpeza = descLimpeza;
+    }
+    
+    public String getNomeLimpeza() {
+        return nomeLimpeza;
+    }
+    public void setNomeLimpeza(String nomeLimpeza) {
+        this.nomeLimpeza = nomeLimpeza;
     }
     
 }
