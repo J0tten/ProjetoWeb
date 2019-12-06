@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FornecedorDAO implements GenericDAO {
@@ -64,7 +65,27 @@ public class FornecedorDAO implements GenericDAO {
 
     @Override
     public List<Object> read() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Object> result = null;
+        try {
+            String sql = "SELECT * FROM fornecedor";
+            PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            result = new ArrayList<>();
+            while (rs.next()) {
+                Fornecedor p = new Fornecedor();
+                p.setIdFornecedor(rs.getInt("idFornecedor")); // aqui é o nome da coluna na tablea
+                p.setEmail(rs.getString("txtEmail"));
+                p.setSenha(rs.getString("txtSenha"));
+                p.setTelefone(rs.getInt("txtTelefone"));
+                result.add(p);
+            }
+            rs.close();
+            stm.close();
+        } catch (Exception ex) {
+            System.out.println("PRODUTODAO.READ - erro ao recuperar");
+            System.out.println(ex.getMessage());
+        }
+        return result;
     }
     
     public boolean Login(Object o) throws SQLException, ClassNotFoundException{

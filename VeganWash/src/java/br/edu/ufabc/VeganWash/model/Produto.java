@@ -11,7 +11,7 @@ package br.edu.ufabc.VeganWash.model;
  */
 public class Produto {
     private int idProduto;
-    private Usuario idUsuario;
+    private Fornecedor idFornecedor;
     private Limpeza idLimpeza;
     private double valorM2;
 
@@ -32,15 +32,12 @@ public class Produto {
     /**
      * @return the idUsuario
      */
-    public Usuario getIdUsuario() {
-        return idUsuario;
+    public Fornecedor getIdFornecedor() {
+        return idFornecedor;
     }
 
-    /**
-     * @param idUsuario the idUsuario to set
-     */
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdFornecedor(Fornecedor idFornecedor) {
+        this.idFornecedor = idFornecedor;
     }
 
     /**
