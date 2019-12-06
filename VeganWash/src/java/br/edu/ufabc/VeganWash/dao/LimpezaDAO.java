@@ -55,16 +55,12 @@ public class LimpezaDAO {
     public List<Object> read() {
          List<Object> result = null;
         try {
-            String sql = "SELECT * FROM limpeza";
+            String sql = "SELECT * FROM limpeza ORDER BY idLimpeza";
             PreparedStatement stmread = dataSource.getConnection().prepareStatement(sql);
             ResultSet rs = stmread.executeQuery();
-            result = new ArrayList<>();
+            
             while (rs.next()) {
-                Limpeza l = new Limpeza();
-                l.setIdLimpeza(rs.getInt("idLimpeza")); // aqui é o nome da coluna na tablea
-                l.setNomeLimpeza(rs.getString("nomeLimpeza"));
-                l.setDescLimpeza(rs.getString("descLimpeza"));
-                result.add(l);
+                
             }
             rs.close();
             stmread.close();
