@@ -71,8 +71,8 @@ public class CriarFornecedorServlet extends HttpServlet {
             String userNome = request.getParameter("txtNome");
             String userEmail = request.getParameter("txtEmail");
             String userSenha = request.getParameter("txtSenha");
-            int userTelefone = Integer.parseInt(request.getParameter("txtTelefone"));
-            int userCpf = Integer.parseInt(request.getParameter("txtCpf"));
+            String userTelefone = request.getParameter("txtTelefone");
+            String userCpf = request.getParameter("txtCpf");
             Fornecedor fornecedor = new Fornecedor();
             fornecedor.setNome(userNome);            
             fornecedor.setCpf(userCpf);

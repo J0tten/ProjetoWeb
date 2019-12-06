@@ -29,8 +29,8 @@ create table Limpeza(
 create table Fornecedor(
 	idFornecedor int unique not null primary key auto_increment,
     nome varchar(255),
-    cpf int unique,
-    telefone int,
+    cpf varchar(255) unique,
+    telefone varchar(255),
     email varchar(255) unique,
     senha char(40)
 );

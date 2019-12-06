@@ -29,15 +29,13 @@ public class ProdutoDAO implements GenericDAO {
 
     @Override
     public void create(Object o) {
-        Produto c = (Produto) o;
-        Fornecedor f = (Fornecedor) o;
-        Limpeza z = (Limpeza) o;
+        Produto prod = (Produto) o;
         try {
-            String SQL = "INSERT INTO produto values (null, ?, ?, ?)";
+            String SQL = "INSERT INTO produto values (null, ?, ?, ?, ?)";
             PreparedStatement stm = dataSource.getConnection().prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-            stm.setInt(1, f.getIdFornecedor());
-            stm.setInt(2, z.getIdLimpeza());
-            stm.setDouble(3, c.getValorM2());
+            stm.setInt(1, prod.getIdFornecedor());
+            stm.setInt(2, prod.getIdLimpeza());
+            stm.setDouble(3, prod.getValorM2());
             int result = stm.executeUpdate();
             if (result == 0) {
                 throw new RuntimeException("Falha ao inserir - registros duplicados");

@@ -5,14 +5,18 @@
  */
 package br.edu.ufabc.VeganWash.model;
 
+import java.util.List;
+
 /**
  *
  * @author Victor
  */
 public class Produto {
+
     private int idProduto;
-    private Fornecedor idFornecedor;
-    private Limpeza idLimpeza;
+    private String nome;
+    private Fornecedor fornecedor;
+    private Limpeza limpeza;
     private double valorM2;
 
     /**
@@ -30,28 +34,31 @@ public class Produto {
     }
 
     /**
-     * @return the idUsuario
+     * @return the fornecedor
      */
-    public Fornecedor getIdFornecedor() {
-        return idFornecedor;
-    }
-
-    public void setIdFornecedor(Fornecedor idFornecedor) {
-        this.idFornecedor = idFornecedor;
+    public Fornecedor getFornecedor() {
+        return fornecedor;
     }
 
     /**
-     * @return the idLimpeza
+     * @param fornecedor the fornecedor to set
      */
-    public Limpeza getIdLimpeza() {
-        return idLimpeza;
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
 
     /**
-     * @param idLimpeza the idLimpeza to set
+     * @return the limpeza
      */
-    public void setIdLimpeza(Limpeza idLimpeza) {
-        this.idLimpeza = idLimpeza;
+    public Limpeza getLimpeza() {
+        return limpeza;
+    }
+
+    /**
+     * @param limpeza the limpeza to set
+     */
+    public void setLimpeza(Limpeza limpeza) {
+        this.limpeza = limpeza;
     }
 
     /**
@@ -67,4 +74,19 @@ public class Produto {
     public void setValorM2(double valorM2) {
         this.valorM2 = valorM2;
     }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
 }
