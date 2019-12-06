@@ -7,6 +7,7 @@ package br.edu.ufabc.VeganWash.dao;
 
 import br.edu.ufabc.VeganWash.model.Fornecedor;
 import br.edu.ufabc.VeganWash.model.Limpeza;
+import br.edu.ufabc.VeganWash.model.Produto;
 import br.edu.ufabc.VeganWash.model.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,37 +38,46 @@ public class LimpezaDAO {
 
     public int buscaIdLimpeza(Object o){
         try {
-            Fornecedor c = (Fornecedor) o;
-            int idForn;
-            String SQL = "SELECT idfornecedor FROM fornecedor where (email = ?)";
+            Limpeza limp = (Limpeza) o;
+            int idLimp;
+            String SQL = "SELECT idlimpeza FROM limpeza where (nome = ?)";
             PreparedStatement stm = dataSource.getConnection().prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-            stm.setString(1, c.getEmail());
+            stm.setInt(1, limp.getIdLimpeza());
             ResultSet result = stm.executeQuery();
-            idForn = Integer.parseInt(result.getString("idFornecedor"));
+            idLimp = Integer.parseInt(result.getString("idLimpeza"));
             stm.close();
-            return idForn;
+            return idLimp;
         } catch (Exception ex) {
             ex.printStackTrace();
             return 0;
         }
     }
     
-    public List<Object> read() {
+    public List<Object> read(String nome) {
          List<Object> result = null;
         try {
-            String sql = "SELECT * FROM limpeza ORDER BY idLimpeza";
+            String sql = "SELECT * FROM limpeza ORDER BY idLimpeza WHERE nome = ?";
             PreparedStatement stmread = dataSource.getConnection().prepareStatement(sql);
+            stmread.setString(1, nome);
             ResultSet rs = stmread.executeQuery();
             
+            result = new ArrayList<>();
             while (rs.next()) {
-                
+                Limpeza limp = new Limpeza();
+                limp.setIdLimpeza(Integer.parseInt(rs.getString("idLimpeza")));
+                limp.setNomeLimpeza(rs.getString("nome"));
+                limp.setDescLimpeza(rs.getString("desclimpeza"));
+                result.add(limp);
             }
             rs.close();
             stmread.close();
+            return result;
         } catch (Exception ex) {
-            System.out.println("Limpeza.READ - erro ao recuperar");
+            System.out.println("PRODUTODAO.READ - erro ao recuperar");
             System.out.println(ex.getMessage());
+            return null;
         }
-        return result;
+        
     }
 }
+

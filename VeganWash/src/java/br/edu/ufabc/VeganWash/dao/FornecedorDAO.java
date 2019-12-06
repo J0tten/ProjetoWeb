@@ -73,29 +73,36 @@ public class FornecedorDAO implements GenericDAO {
         }
     }
 
-    public int pegarIdFornecedor(Object o) {
-        try {
-            Fornecedor c = (Fornecedor) o;
-            int idForn;
-            String SQL = "SELECT idfornecedor FROM fornecedor where (email = ?)";
-            PreparedStatement stm = dataSource.getConnection().prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-            stm.setString(1, c.getEmail());
-            ResultSet result = stm.executeQuery();
-            idForn = Integer.parseInt(result.getString("idFornecedor"));
-            stm.close();
-            return idForn;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return 0;
-        }
-    }
-
     @Override
     public List<Object> read() {
         List<Object> result = null;
         try {
             String sql = "SELECT * FROM fornecedor";
             PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            result = new ArrayList<>();
+            while (rs.next()) {
+                Fornecedor p = new Fornecedor();
+                p.setIdFornecedor(rs.getInt("idFornecedor")); // aqui é o nome da coluna na tablea
+                p.setEmail(rs.getString("email"));
+                p.setSenha(rs.getString("Senha"));
+                p.setTelefone(rs.getString("telefone"));
+                result.add(p);
+            }
+            rs.close();
+            stm.close();
+        } catch (Exception ex) {
+            System.out.println("PRODUTODAO.READ - erro ao recuperar");
+            System.out.println(ex.getMessage());
+        }
+        return result;
+    }
+    public List<Object> read(String email) {
+        List<Object> result = null;
+        try {
+            String sql = "SELECT * FROM fornecedor WHERE email = ?";
+            PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
+            stm.setString(1, email);
             ResultSet rs = stm.executeQuery();
             result = new ArrayList<>();
             while (rs.next()) {
