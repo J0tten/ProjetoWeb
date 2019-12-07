@@ -81,4 +81,28 @@ public class ProdutoDAO implements GenericDAO {
         return result;
     }
 
-}
+    public List<Object> read(String nome) {
+        List<Object> result = null;
+        try {
+            String sql = "SELECT * FROM Produto WHERE (nomeProduto = ? )";
+            PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            result = new ArrayList<>();
+            while (rs.next()) {
+                Produto p = new Produto();
+                p.setIdProduto(Integer.parseInt(rs.getString("idProduto"))); // aqui é o nome da coluna na tablea
+                p.setValorM2(Integer.parseInt(rs.getString("valorM2")));
+                
+                result.add(p);
+            }
+            rs.close();
+            stm.close();
+        } catch (Exception ex) {
+            System.out.println("PRODUTODAO.READ - erro ao recuperar");
+            System.out.println(ex.getMessage());
+        }
+        return result;
+    }
+    
+    
+}   
