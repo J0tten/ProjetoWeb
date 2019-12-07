@@ -82,7 +82,7 @@ public class BuscarProdutoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String paginaDestino = ("/pesquisaprodutos.jsp");
+        String paginaDestino = ("/resultadobusca.jsp");
         try {
             String prodNome = request.getParameter("nomeBusca");
             DataSource dataSource = new DataSource();

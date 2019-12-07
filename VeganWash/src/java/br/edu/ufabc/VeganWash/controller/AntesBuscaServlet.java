@@ -71,7 +71,7 @@ public class AntesBuscaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String paginaDestino = "./resultadobusca.jsp";
+        String paginaDestino = "/resultadobusca.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(paginaDestino);
     }
 

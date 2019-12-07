@@ -76,7 +76,28 @@
     <servlet-mapping>
         <servlet-name>SenhaFornecedorServlet</servlet-name>
         <url-pattern>/senhafornecedor</url-pattern>
-    </servlet-mapping>   
+    </servlet-mapping>  
+    
+     
+       <servlet>
+        <servlet-name>BuscarProdutoServlet</servlet-name>
+        <servlet-class>br.edu.ufabc.VeganWash.controller.BuscarProdutoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BuscarProdutoServlet</servlet-name>
+        <url-pattern>/pesquisaprodutos</url-pattern>
+    </servlet-mapping>  
+    
+    
+    <servlet>
+        <servlet-name>AntesBuscaServlet</servlet-name>
+        <servlet-class>br.edu.ufabc.VeganWash.controller.AntesBuscaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AntesBuscaServlet</servlet-name>
+        <url-pattern>/resultadobusca</url-pattern>
+    </servlet-mapping> 
+    
     <session-config>
         <session-timeout>
            5
