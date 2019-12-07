@@ -40,7 +40,7 @@ public class LimpezaDAO {
         try {
             Limpeza limp = (Limpeza) o;
             int idLimp;
-            String SQL = "SELECT idlimpeza FROM limpeza where (nome = ?)";
+            String SQL = "SELECT idlimpeza FROM limpeza WHERE nome = ?";
             PreparedStatement stm = dataSource.getConnection().prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             stm.setInt(1, limp.getIdLimpeza());
             ResultSet result = stm.executeQuery();

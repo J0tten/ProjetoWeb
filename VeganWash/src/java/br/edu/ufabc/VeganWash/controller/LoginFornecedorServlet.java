@@ -62,8 +62,8 @@ public class LoginFornecedorServlet extends HttpServlet {
             throws ServletException, IOException {
         String paginaDestino = "/login.jsp";
         try {
-            String fornecedorEmail = request.getParameter("txtEmail");
-            String fornecedorSenha = request.getParameter("txtSenha");
+            String fornecedorEmail = request.getParameter("emailForn");
+            String fornecedorSenha = request.getParameter("senhaForn");
             Fornecedor fornecedor = new Fornecedor();
             fornecedor.setEmail(fornecedorEmail);
             fornecedor.setSenha(fornecedorSenha);
@@ -74,7 +74,7 @@ public class LoginFornecedorServlet extends HttpServlet {
             if (status == true) {
                 paginaDestino = "/meuspedidos.jsp";
                  HttpSession session = request.getSession(true);
-                session.setAttribute("idUser", fornecedor.getIdFornecedor());
+                session.setAttribute("emailForn", fornecedor.getEmail());
             } else {
                 paginaDestino = "/erro.jsp";
             }

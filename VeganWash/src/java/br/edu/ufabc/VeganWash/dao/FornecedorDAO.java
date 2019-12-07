@@ -84,6 +84,8 @@ public class FornecedorDAO implements GenericDAO {
             while (rs.next()) {
                 Fornecedor p = new Fornecedor();
                 p.setIdFornecedor(rs.getInt("idFornecedor")); // aqui é o nome da coluna na tablea
+                p.setNome(rs.getString("nome"));
+                p.setCpf(rs.getString("cpf"));
                 p.setEmail(rs.getString("email"));
                 p.setSenha(rs.getString("Senha"));
                 p.setTelefone(rs.getString("telefone"));
@@ -97,6 +99,7 @@ public class FornecedorDAO implements GenericDAO {
         }
         return result;
     }
+
     public List<Object> read(String email) {
         List<Object> result = null;
         try {
@@ -108,6 +111,8 @@ public class FornecedorDAO implements GenericDAO {
             while (rs.next()) {
                 Fornecedor p = new Fornecedor();
                 p.setIdFornecedor(rs.getInt("idFornecedor")); // aqui é o nome da coluna na tablea
+                p.setNome(rs.getString("nome"));
+                p.setCpf(rs.getString("cpf"));
                 p.setEmail(rs.getString("email"));
                 p.setSenha(rs.getString("Senha"));
                 p.setTelefone(rs.getString("telefone"));
@@ -133,13 +138,6 @@ public class FornecedorDAO implements GenericDAO {
             ResultSet result = stm.executeQuery();
             if (result.next()) {
                 System.out.println("Login efetuado");
-                String idFornecedor = "SELECT idFornecedor FROM fornecedor where email = ?";
-                PreparedStatement stmID = dataSource.getConnection().prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-                stmID.setString(1, c.getEmail());
-                ResultSet resultId = stmID.executeQuery();
-                long converte = resultId.getLong(1);
-                int iD = (int) converte;
-                c.setIdFornecedor(iD);
                 i = true;
             } else {
                 System.out.println("Login falhou");

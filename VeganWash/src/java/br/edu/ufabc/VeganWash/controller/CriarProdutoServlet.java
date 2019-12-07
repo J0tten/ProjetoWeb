@@ -9,6 +9,7 @@ import br.edu.ufabc.VeganWash.dao.DataSource;
 import br.edu.ufabc.VeganWash.dao.FornecedorDAO;
 import br.edu.ufabc.VeganWash.dao.GenericDAO;
 import br.edu.ufabc.VeganWash.dao.LimpezaDAO;
+import br.edu.ufabc.VeganWash.dao.ProdutoDAO;
 import br.edu.ufabc.VeganWash.dao.UsuarioDAO;
 import br.edu.ufabc.VeganWash.model.Endereco;
 import br.edu.ufabc.VeganWash.model.Fornecedor;
@@ -23,6 +24,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,9 +37,12 @@ public class CriarProdutoServlet extends HttpServlet {
             throws ServletException, IOException {
         String paginaDestino = "/index.jsp";
         try {
+            HttpSession session = request.getSession(true);
             String prodNome = request.getParameter("prodNome");
             double prodValorM2 = Double.parseDouble(request.getParameter("valorm2"));
-            String lavagem = request.getParameter("dropLavagem");
+            String getLavagem = request.getParameter("dropLavagem");
+            String lavagem = getLavagem.trim();
+            
 
             Produto produto = new Produto();
             produto.setNome(prodNome);
@@ -45,17 +50,26 @@ public class CriarProdutoServlet extends HttpServlet {
             
             // tratar endereços
             Fornecedor forn = new Fornecedor();
-            forn.setEmail(request.getParameter("emailForn"));
-            forn.getProdutos().add(produto);
+            forn.setEmail((String) session.getAttribute("emailForn"));
+            String email = forn.getEmail();
+           
 
             DataSource dataSource = new DataSource();
             LimpezaDAO limpDao = new LimpezaDAO(dataSource);
             FornecedorDAO fornDao = new FornecedorDAO(dataSource);
             Limpeza dadosLimp = (Limpeza) limpDao.read(lavagem);
-            Fornecedor dadosForn = (Fornecedor) fornDao.read(forn.getEmail());
+            System.out.println(getLavagem+"FDP");
+            System.out.println(lavagem+"FDP1");
+            System.out.println(email+"FDP");
             
-            produto.setFornecedor(forn);
-            fornDao.create(forn);
+            
+            Fornecedor dadosForn = (Fornecedor) fornDao.read(email);
+            
+            
+            
+            ProdutoDAO prodDao = new ProdutoDAO(dataSource);
+            produto.setFornecedor(dadosForn);
+            prodDao.create(produto);
             dataSource.getConnection().close();
             paginaDestino = "/sucesso.jsp";
         } catch (Exception ex) {
