@@ -7,8 +7,8 @@ insert into limpeza (nome, descLimpeza)
 values 
 	("Vegana", "Limpeza com produtos sem nenhuma origem animal"),
     ("Vegetariana","Limpeza com produtos sem o uso de Carne");
-insert into produto(idFornecedor, idLimpeza, valorM2)
-values ((SELECT idFornecedor from fornecedor where fornecedor.Nome = "Pedro"),(SELECT idLimpeza from Limpeza where Limpeza.Nome = "Vegana"),30);
+insert into produto(nomeProduto, idFornecedor, idLimpeza, valorM2)
+values ("Teste", (SELECT idFornecedor from fornecedor where fornecedor.Nome = "Pedro"),(SELECT idLimpeza from Limpeza where Limpeza.Nome = "Limpeza Simples"),30);
 Select * from usuario;
 Select * from limpeza;
 select * from produto;
@@ -18,3 +18,4 @@ select * from pedido;
 SELECT idFornecedor from fornecedor where fornecedor.Nome = "Pedro";
 select idProduto from produto,limpeza where produto.idLimpeza=Limpeza.idLimpeza and limpeza.nome = "Vegana";
 delete from fornecedor where idFornecedor=2;
+SELECT fornecedor.nome, produto.idProduto, produto.nomeproduto from produto, fornecedor where fornecedor.idFornecedor = produto.idFornecedor;

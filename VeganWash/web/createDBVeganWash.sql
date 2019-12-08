@@ -40,6 +40,7 @@ create table Produto(
     idFornecedor int,
 	idLimpeza int,
     valorM2 double,
+    nomeProduto varchar(255),
     foreign key (idFornecedor) REFERENCES Fornecedor(idFornecedor),
     foreign key (idLimpeza) REFERENCES Limpeza(idLimpeza)
 );

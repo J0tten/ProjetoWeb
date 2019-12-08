@@ -5,8 +5,6 @@
  */
 package br.edu.ufabc.VeganWash.model;
 
-import java.util.List;
-
 /**
  *
  * @author Victor
@@ -14,7 +12,7 @@ import java.util.List;
 public class Produto {
 
     private int idProduto;
-    private String nome;
+    private String nomeProduto;
     private Fornecedor fornecedor;
     private Limpeza limpeza;
     private double valorM2;
@@ -78,15 +76,15 @@ public class Produto {
     /**
      * @return the nome
      */
-    public String getNome() {
-        return nome;
+    public String getNomeProduto() {
+        return nomeProduto;
     }
 
     /**
      * @param nome the nome to set
      */
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
     }
 
 }

@@ -45,7 +45,7 @@ public class CriarProdutoServlet extends HttpServlet {
             
 
             Produto produto = new Produto();
-            produto.setNome(prodNome);
+            produto.setNomeProduto(prodNome);
             produto.setValorM2(prodValorM2);
             
             // tratar endereços

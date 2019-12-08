@@ -56,7 +56,7 @@ public class LimpezaDAO {
     public List<Object> read(String nome) {
          List<Object> result = null;
         try {
-            String sql = "SELECT * FROM limpeza ORDER BY idLimpeza WHERE nome = ?";
+            String sql = "SELECT * FROM limpeza ORDER BY idLimpeza WHERE idLimpeza = ?";
             PreparedStatement stmread = dataSource.getConnection().prepareStatement(sql);
             stmread.setString(1, nome);
             ResultSet rs = stmread.executeQuery();
@@ -71,9 +71,59 @@ public class LimpezaDAO {
             }
             rs.close();
             stmread.close();
+            System.out.println("Carregou Limpeza");
             return result;
         } catch (Exception ex) {
-            System.out.println("PRODUTODAO.READ - erro ao recuperar");
+            System.out.println("LIMPEZA.READ - erro ao recuperar");
+            System.out.println(ex.getMessage());
+            return null;
+        }
+        
+    }
+    public Limpeza readId(String idlimp) {
+         Limpeza result = null;
+        try {
+            String sql = "SELECT * FROM limpeza WHERE idLimpeza = ?";
+            PreparedStatement stmread = dataSource.getConnection().prepareStatement(sql);
+            stmread.setString(1, idlimp);
+            ResultSet rslimp = stmread.executeQuery();
+            while (rslimp.next()) {
+                Limpeza limp = new Limpeza();
+                limp.setIdLimpeza(Integer.parseInt(rslimp.getString("idLimpeza")));
+                limp.setNomeLimpeza(rslimp.getString("nome"));
+                limp.setDescLimpeza(rslimp.getString("descLimpeza"));
+            }
+            rslimp.close();
+            stmread.close();
+            System.out.println("Carregou Limpeza");
+            return result;
+        } catch (Exception ex) {
+            System.out.println("LIMPEZADAO.READID - erro ao recuperar");
+            System.out.println(ex.getMessage());
+            return null;
+        }
+        
+    }
+    public List<Object> read() {
+         List<Object> result = null;
+        try {
+            String sql = "SELECT * FROM limpeza";
+            PreparedStatement stmread = dataSource.getConnection().prepareStatement(sql);
+            ResultSet rs = stmread.executeQuery();
+            result = new ArrayList<>();
+            while (rs.next()) {
+                Limpeza limp = new Limpeza();
+                limp.setIdLimpeza(Integer.parseInt(rs.getString("idLimpeza")));
+                limp.setNomeLimpeza(rs.getString("nome"));
+                limp.setDescLimpeza(rs.getString("desclimpeza"));
+                result.add(limp);
+            }
+            rs.close();
+            stmread.close();
+            System.out.println("Carregou Limpeza");
+            return result;
+        } catch (Exception ex) {
+            System.out.println("LIMPEZADAO.READSTRING - erro ao recuperar");
             System.out.println(ex.getMessage());
             return null;
         }

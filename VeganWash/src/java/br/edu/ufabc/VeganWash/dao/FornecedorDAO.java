@@ -93,8 +93,34 @@ public class FornecedorDAO implements GenericDAO {
             }
             rs.close();
             stm.close();
+            System.out.println("Carregou Fornecedores");
         } catch (Exception ex) {
             System.out.println("PRODUTODAO.READ - erro ao recuperar");
+            System.out.println(ex.getMessage());
+        }
+        return result;
+    }
+    public Fornecedor readId(String idFornecedor) {
+        Fornecedor result = null;
+        try {
+            String sql = "SELECT * FROM fornecedor WHERE idFornecedor = ?";
+            PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
+            stm.setString(1,idFornecedor);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Fornecedor p = new Fornecedor();
+                p.setIdFornecedor(rs.getInt("idFornecedor")); // aqui é o nome da coluna na tablea
+                p.setNome(rs.getString("nome"));
+                p.setCpf(rs.getString("cpf"));
+                p.setEmail(rs.getString("email"));
+                p.setSenha(rs.getString("Senha"));
+                p.setTelefone(rs.getString("telefone"));
+            }
+            rs.close();
+            stm.close();
+            System.out.println("Carregou Fornecedores");
+        } catch (Exception ex) {
+            System.out.println("FORNECEDORDAO.READ - erro ao recuperar");
             System.out.println(ex.getMessage());
         }
         return result;
@@ -120,8 +146,9 @@ public class FornecedorDAO implements GenericDAO {
             }
             rs.close();
             stm.close();
+            System.out.println("Carregou Fornecedores");
         } catch (Exception ex) {
-            System.out.println("PRODUTODAO.READ - erro ao recuperar");
+            System.out.println("FORNECEDORDAO.READ - erro ao recuperar");
             System.out.println(ex.getMessage());
         }
         return result;

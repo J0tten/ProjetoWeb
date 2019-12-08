@@ -11,7 +11,35 @@ package br.edu.ufabc.VeganWash.model;
  */
 public class ItemCarrinho {
     private Produto produto;
-    private int m2;
+    private double m2;
+
+    /**
+     * @return the produto
+     */
+    public Produto getProduto() {
+        return produto;
+    }
+
+    /**
+     * @param produto the produto to set
+     */
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
+    /**
+     * @return the m2
+     */
+    public double getM2() {
+        return m2;
+    }
+
+    /**
+     * @param m2 the m2 to set
+     */
+    public void setM2(double m2) {
+        this.m2 = m2;
+    }
     
     
 }

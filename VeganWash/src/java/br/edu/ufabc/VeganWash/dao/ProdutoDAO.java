@@ -33,7 +33,7 @@ public class ProdutoDAO implements GenericDAO {
         try {
             String SQL = "INSERT INTO produto values (null, ?, ?, ?, ?)";
             PreparedStatement stm = dataSource.getConnection().prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-            stm.setString(1,prod.getNome());
+            stm.setString(1, prod.getNomeProduto());
             stm.setInt(2, prod.getFornecedor().getIdFornecedor());
             stm.setInt(3, prod.getLimpeza().getIdLimpeza());
             stm.setDouble(4, prod.getValorM2());
@@ -62,20 +62,28 @@ public class ProdutoDAO implements GenericDAO {
         List<Object> result = null;
         try {
             String sql = "SELECT * FROM Produto";
-            PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
-            ResultSet rs = stm.executeQuery();
+            PreparedStatement stmProd = dataSource.getConnection().prepareStatement(sql);
+            ResultSet rsprod = stmProd.executeQuery(sql);
+
+            FornecedorDAO fornDao = new FornecedorDAO(dataSource);
+            LimpezaDAO limpDao = new LimpezaDAO(dataSource);
             result = new ArrayList<>();
-            while (rs.next()) {
+            while (rsprod.next()) {
                 Produto p = new Produto();
-                p.setIdProduto(Integer.parseInt(rs.getString("idProduto"))); // aqui é o nome da coluna na tablea
-                p.setValorM2(Integer.parseInt(rs.getString("valorM2")));
-                
+                Limpeza limpez = limpDao.readId(rsprod.getString("idLimpeza"));
+                Fornecedor fornec = fornDao.readId(rsprod.getString("idFornecedor"));
+                p.setIdProduto(Integer.parseInt(rsprod.getString("idProduto")));// aqui é o nome da coluna na tablea
+                p.setValorM2(Integer.parseInt(rsprod.getString("valorM2")));
+                p.setFornecedor(fornec);
+                p.setNomeProduto(rsprod.getString("nomeProduto"));
+                p.setLimpeza(limpez);
                 result.add(p);
+
             }
-            rs.close();
-            stm.close();
+            rsprod.close();
+            stmProd.close();
         } catch (Exception ex) {
-            System.out.println("PRODUTODAO.READ - erro ao recuperar");
+            System.out.println("PRODUTODAO.READ - erro ao recuperar 2");
             System.out.println(ex.getMessage());
         }
         return result;
@@ -92,7 +100,7 @@ public class ProdutoDAO implements GenericDAO {
                 Produto p = new Produto();
                 p.setIdProduto(Integer.parseInt(rs.getString("idProduto"))); // aqui é o nome da coluna na tablea
                 p.setValorM2(Integer.parseInt(rs.getString("valorM2")));
-                
+
                 result.add(p);
             }
             rs.close();
@@ -103,6 +111,5 @@ public class ProdutoDAO implements GenericDAO {
         }
         return result;
     }
-    
-    
-}   
+
+}

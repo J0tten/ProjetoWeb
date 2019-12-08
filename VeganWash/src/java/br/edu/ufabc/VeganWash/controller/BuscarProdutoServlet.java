@@ -8,6 +8,7 @@ package br.edu.ufabc.VeganWash.controller;
 import br.edu.ufabc.VeganWash.dao.FornecedorDAO;
 import br.edu.ufabc.VeganWash.dao.DataSource;
 import br.edu.ufabc.VeganWash.dao.GenericDAO;
+import br.edu.ufabc.VeganWash.dao.ProdutoDAO;
 import br.edu.ufabc.VeganWash.model.Fornecedor;
 import br.edu.ufabc.VeganWash.model.Produto;
 import java.io.*;
@@ -15,8 +16,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.sql.*;
 import java.sql.*;
-import java.util.*;
-
+import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -30,45 +30,23 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class BuscarProdutoServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet BuscarProduto</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet BuscarProduto at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/resultadobusca.jsp");
+            DataSource ds = new DataSource();
+            GenericDAO dao = new ProdutoDAO(ds);
+            List<Object> lista = dao.read();
+            ds.getConnection().close();
+            System.out.println("Tamanho da lista = " + lista.size());
+            request.setAttribute("Lista", lista);
+            System.out.println("Algo deu Errado");
+            dispatcher.forward(request, response);
+        } catch (Exception ex) {
+            System.out.println("Algo deu Errado");
+            ex.printStackTrace();
+        }
     }
 
     /**
@@ -79,26 +57,26 @@ public class BuscarProdutoServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
+    
+    /*@Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String paginaDestino = ("/resultadobusca.jsp");
         try {
-            String prodNome = request.getParameter("nomeBusca");
-            DataSource dataSource = new DataSource();
-            GenericDAO dao = new FornecedorDAO(dataSource);
-            List<Object> produtos = dao.read();
-            dataSource.getConnection().close();
-            System.out.println("Tamanho da lista = " + produtos.size());
-            request.setAttribute("Lista", produtos);            
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            paginaDestino = "/erro.jsp";
-        } finally {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(paginaDestino);
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/resultadobusca.jsp");
+            DataSource ds = new DataSource();
+            GenericDAO dao = new ProdutoDAO(ds);
+            List<Object> lista = dao.read();
+            ds.getConnection().close();
+            System.out.println("Tamanho da lista = " + lista.size());
+            request.setAttribute("Lista", lista);
+
             dispatcher.forward(request, response);
+        } catch (Exception ex) {
+            System.out.println("Algo deu Errado");
         }
-    }
+    }*
+    
+    /
 
     /**
      * Returns a short description of the servlet.

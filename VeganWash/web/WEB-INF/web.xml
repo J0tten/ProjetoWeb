@@ -7,13 +7,14 @@
         <servlet-name>CriarFornecedorServlet</servlet-name>
         <servlet-class>br.edu.ufabc.VeganWash.controller.CriarFornecedorServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DetalheProdutoServlet</servlet-name>
+        <servlet-class>br.edu.ufabc.VeganWash.controller.DetalheProdutoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CriarFornecedorServlet</servlet-name>
         <url-pattern>/newfornecedor</url-pattern>
     </servlet-mapping>
-    
-    
-    
     <servlet>
         <servlet-name>CriarProdutoServlet</servlet-name>
         <servlet-class>br.edu.ufabc.VeganWash.controller.CriarProdutoServlet</servlet-class>
@@ -22,9 +23,6 @@
         <servlet-name>CriarProdutoServlet</servlet-name>
         <url-pattern>/newproduto</url-pattern>
     </servlet-mapping>
-    
-    
-    
     <servlet>
         <servlet-name>CriarUsuarioServlet</servlet-name>
         <servlet-class>br.edu.ufabc.VeganWash.controller.CriarUsuarioServlet</servlet-class>
@@ -33,9 +31,6 @@
         <servlet-name>CriarUsuarioServlet</servlet-name>
         <url-pattern>/newuser</url-pattern>
     </servlet-mapping>
-    
-    
-    
     <servlet>
         <servlet-name>LoginFornecedorServlet</servlet-name>
         <servlet-class>br.edu.ufabc.VeganWash.controller.LoginFornecedorServlet</servlet-class>
@@ -44,9 +39,6 @@
         <servlet-name>LoginFornecedorServlet</servlet-name>
         <url-pattern>/loginfornecedor</url-pattern>
     </servlet-mapping>
-    
-    
-    
     <servlet>
         <servlet-name>LoginUsuarioServlet</servlet-name>
         <servlet-class>br.edu.ufabc.VeganWash.controller.LoginUsuarioServlet</servlet-class>
@@ -55,9 +47,6 @@
         <servlet-name>LoginUsuarioServlet</servlet-name>
         <url-pattern>/loginusuario</url-pattern>
     </servlet-mapping>
-    
-    
-    
     <servlet>
         <servlet-name>SenhaUsuarioServlet</servlet-name>
         <servlet-class>br.edu.ufabc.VeganWash.controller.SenhaUsuarioServlet</servlet-class>
@@ -66,9 +55,6 @@
         <servlet-name>SenhaUsuarioServlet</servlet-name>
         <url-pattern>/senhausuario</url-pattern>
     </servlet-mapping>
-    
-      
-        
     <servlet>
         <servlet-name>SenhaFornecedorServlet</servlet-name>
         <servlet-class>br.edu.ufabc.VeganWash.controller.SenhaFornecedorServlet</servlet-class>
@@ -76,32 +62,22 @@
     <servlet-mapping>
         <servlet-name>SenhaFornecedorServlet</servlet-name>
         <url-pattern>/senhafornecedor</url-pattern>
-    </servlet-mapping>  
-    
-     
-       <servlet>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>BuscarProdutoServlet</servlet-name>
         <servlet-class>br.edu.ufabc.VeganWash.controller.BuscarProdutoServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>BuscarProdutoServlet</servlet-name>
-        <url-pattern>/pesquisaprodutos</url-pattern>
-    </servlet-mapping>  
-    
-    
-    <servlet>
-        <servlet-name>AntesBuscaServlet</servlet-name>
-        <servlet-class>br.edu.ufabc.VeganWash.controller.AntesBuscaServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AntesBuscaServlet</servlet-name>
         <url-pattern>/resultadobusca</url-pattern>
-    </servlet-mapping> 
-    
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetalheProdutoServlet</servlet-name>
+        <url-pattern>/detalheProduto</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
            5
         </session-timeout>
     </session-config>
-    
 </web-app>
