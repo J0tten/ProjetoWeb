@@ -92,18 +92,55 @@ public class ProdutoDAO implements GenericDAO {
     public List<Object> read(String nome) {
         List<Object> result = null;
         try {
-            String sql = "SELECT * FROM Produto WHERE (nomeProduto = ? )";
+            String sql = "SELECT * FROM Produto WHERE (idProduto = ? )";
             PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
-            ResultSet rs = stm.executeQuery();
+            ResultSet rsprod = stm.executeQuery();
+            FornecedorDAO fornDao = new FornecedorDAO(dataSource);
+            LimpezaDAO limpDao = new LimpezaDAO(dataSource);
             result = new ArrayList<>();
-            while (rs.next()) {
+            while (rsprod.next()) {
                 Produto p = new Produto();
-                p.setIdProduto(Integer.parseInt(rs.getString("idProduto"))); // aqui é o nome da coluna na tablea
-                p.setValorM2(Integer.parseInt(rs.getString("valorM2")));
-
+                Limpeza limpez = limpDao.readId(rsprod.getString("idLimpeza"));
+                Fornecedor fornec = fornDao.readId(rsprod.getString("idFornecedor"));
+                p.setIdProduto(Integer.parseInt(rsprod.getString("idProduto")));// aqui é o nome da coluna na tablea
+                p.setValorM2(Integer.parseInt(rsprod.getString("valorM2")));
+                p.setFornecedor(fornec);
+                p.setNomeProduto(rsprod.getString("nomeProduto"));
+                p.setLimpeza(limpez);
                 result.add(p);
+
             }
-            rs.close();
+            rsprod.close();
+            stm.close();
+        } catch (Exception ex) {
+            System.out.println("PRODUTODAO.READ - erro ao recuperar");
+            System.out.println(ex.getMessage());
+        }
+        return result;
+    }
+    public List<Object> read(int id) {
+        List<Object> result = null;
+        try {
+            String sql = "SELECT * FROM Produto WHERE (idProduto = ? )";
+            PreparedStatement stm = dataSource.getConnection().prepareStatement(sql);
+            stm.setInt(1, id);
+            ResultSet rsprod = stm.executeQuery();
+            FornecedorDAO fornDao = new FornecedorDAO(dataSource);
+            LimpezaDAO limpDao = new LimpezaDAO(dataSource);
+            result = new ArrayList<>();
+            while (rsprod.next()) {
+                Produto p = new Produto();
+                Limpeza limpez = limpDao.readId(rsprod.getString("idLimpeza"));
+                Fornecedor fornec = fornDao.readId(rsprod.getString("idFornecedor"));
+                p.setIdProduto(Integer.parseInt(rsprod.getString("idProduto")));// aqui é o nome da coluna na tablea
+                p.setValorM2(Integer.parseInt(rsprod.getString("valorM2")));
+                p.setFornecedor(fornec);
+                p.setNomeProduto(rsprod.getString("nomeProduto"));
+                p.setLimpeza(limpez);
+                result.add(p);
+
+            }
+            rsprod.close();
             stm.close();
         } catch (Exception ex) {
             System.out.println("PRODUTODAO.READ - erro ao recuperar");

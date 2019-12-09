@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletResponse;
 public class BuscarProdutoServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/resultadobusca.jsp");
@@ -41,7 +41,6 @@ public class BuscarProdutoServlet extends HttpServlet {
             ds.getConnection().close();
             System.out.println("Tamanho da lista = " + lista.size());
             request.setAttribute("Lista", lista);
-            System.out.println("Algo deu Errado");
             dispatcher.forward(request, response);
         } catch (Exception ex) {
             System.out.println("Algo deu Errado");

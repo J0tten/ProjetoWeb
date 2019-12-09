@@ -11,7 +11,7 @@
 
     <body>
         <h1>
-            Teste
+            Todos os Produtos:
         </h1>
 
         <!-- row dos produtos -->
@@ -19,6 +19,7 @@
         <c:forEach var="Produto" items="${Lista}">
             <div class="row">
                 <div class="col-md-8">
+                    <a href="detalheProduto?idProduto=${Produto.idProduto}&nomeProduto=${Produto.nomeProduto}">${Produto.nomeProduto}</a>
                     <h3>
                         ${Produto.nomeProduto}
                     </h3>

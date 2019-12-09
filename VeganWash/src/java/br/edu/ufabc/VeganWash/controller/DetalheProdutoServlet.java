@@ -5,8 +5,12 @@
  */
 package br.edu.ufabc.VeganWash.controller;
 
+import br.edu.ufabc.VeganWash.dao.DataSource;
+import br.edu.ufabc.VeganWash.dao.ProdutoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,22 +31,7 @@ public class DetalheProdutoServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet DetalheProdutoServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet DetalheProdutoServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -56,7 +45,27 @@ public class DetalheProdutoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+                
+        try{
+            DataSource ds = new DataSource();
+            ProdutoDAO dao = new ProdutoDAO(ds);
+            System.out.println("Veio até aqui");
+            System.out.println(request.getParameter("idProduto"));
+            List<Object> lista = dao.read(Integer.parseInt(request.getParameter("idProduto")));
+            System.out.println("Tamanho da lista: "+lista.size());
+            ds.getConnection().close();
+            if (!lista.isEmpty()){
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/detalheProduto.jsp");
+                request.getSession().setAttribute("DetalheProduto",lista.get(0));
+                dispatcher.forward(request, response);
+            }else{
+                System.out.println("Algo não deu certo");
+            }
+            
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     /**
@@ -67,12 +76,12 @@ public class DetalheProdutoServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
+    /*@Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
+    */
     /**
      * Returns a short description of the servlet.
      *
