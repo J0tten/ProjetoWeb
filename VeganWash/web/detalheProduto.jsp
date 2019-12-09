@@ -26,9 +26,9 @@
                     <div class="form-group">
 
                         <label for="quantidade">
-                            Quantidade
+                            M2 à adicionar
                         </label>
-                        <input type="number" class="form-control" id="txtQuandidade" name="txtQtde" min="1" value="1">
+                        <input type="number" class="form-control" id="quantM2" name="quantm2" min="1" value="1">
                     </div>
                     <button type="submit" class="btn btn-primary">
                         Adicionar ao Carrinho

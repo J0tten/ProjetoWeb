@@ -6,10 +6,12 @@
 package br.edu.ufabc.VeganWash.controller;
 
 import br.edu.ufabc.VeganWash.model.Carrinho;
+import br.edu.ufabc.VeganWash.model.Produto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Victor
  */
-public class MeuCarrinhoServlet extends HttpServlet {
+@WebServlet(name = "AdicionarProdutoCarrinhoServlet", urlPatterns = {"/adicionarCarrinho"})
+public class AdicionarProdutoCarrinhoServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,26 +32,10 @@ public class MeuCarrinhoServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
+    /*@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Carrinho carrinho = (Carrinho)request.getSession().getAttribute("Carrinho");
-        if (carrinho == null){
-            carrinho = new Carrinho();
-        }
-        request.getSession().setAttribute("Carrinho",carrinho);
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/meucarrinho.jsp");
-        dispatcher.forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -59,12 +46,24 @@ public class MeuCarrinhoServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    /*@Override
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        Carrinho carrinho;
+        carrinho = (Carrinho)request.getSession().getAttribute("Carrinho");
+        if (carrinho == null){
+            carrinho = new Carrinho();
+        }
+        Produto produto = (Produto)request.getSession().getAttribute("DetalheProduto");
+        double qtde = Double.parseDouble(request.getParameter("quantm2"));
+        System.out.println("Produto "+produto.getNomeProduto()+" Quant"+ qtde);
+        carrinho.Add(produto,qtde);
+        request.getSession().setAttribute("Carrinho", carrinho);
+        
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/meucarrinho.jsp");
+        dispatcher.forward(request,response);            
     }
-    */
+
     /**
      * Returns a short description of the servlet.
      *

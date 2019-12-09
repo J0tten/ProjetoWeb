@@ -7,13 +7,22 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>.: Resultado Busca :.</title>
         <link rel="icon" href="./Imagens/Icon-folinha.jpg">
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
     </head>
 
     <body>
         <h1>
             Todos os Produtos:
         </h1>
-
+        <div class="col-md-2">
+            <a href="./meucarrinho">Carrinho</a>  
+        </div>
         <!-- row dos produtos -->
 
         <c:forEach var="Produto" items="${Lista}">
