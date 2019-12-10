@@ -25,7 +25,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" href='index.html'>Home</a>
                         </li>
-                                                <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link active" href='./meucarrinho'>Carrinho</a>
                         </li>
                     </ul>
@@ -33,25 +33,25 @@
                         Todos Produtos:
                     </h3>
 
-                  <div class="card-deck">
-                    <c:forEach var="Produto" items="${Lista}">
-                        <div class="card mt-4">
-                            <h5 class="card-header">
-                                <a href="detalheProduto?idProduto=${Produto.idProduto}&nomeProduto=${Produto.nomeProduto}">${Produto.nomeProduto}</a>
-                            </h5>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    Descrição do produto Bla bla bla mais imagem
-                                </p>
-                            </div>
-                            <div class="card-footer">
-                                R$ ${Produto.valorM2} /m²
-                            </div>
-                        </div> 
-                    </c:forEach>   
-                 </div>   
-                    
-                    
+                    <div class="card-deck">
+                        <c:forEach var="Produto" items="${Lista}">
+                            <div class="card mt-4">
+                                <h5 class="card-header">
+                                    <a href="detalheProduto?idProduto=${Produto.idProduto}&nomeProduto=${Produto.nomeProduto}">${Produto.nomeProduto}</a>
+                                </h5>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        Descrição do produto Bla bla bla mais imagem
+                                    </p>
+                                </div>
+                                <div class="card-footer">
+                                    R$ ${Produto.valorM2} /m²
+                                </div>
+                            </div> 
+                        </c:forEach>   
+                    </div>   
+
+
                 </div>
             </div>
         </div>

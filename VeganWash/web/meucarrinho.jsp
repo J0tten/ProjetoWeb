@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Carrinho!</title>
         <meta name="description" content="Source code generated using layoutit.com">
         <meta name="author" content="LayoutIt!">
 
@@ -21,18 +21,24 @@
 
     </head>
     <body>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="index.html">Home</a>
+            </li>
+        </ul>
+
         <div>
-            Esse é o idUsuario: ${user.idUsuario}            
+            Carrinho do usuário: ${user.nome}            
         </div>
         <div class="row">
             <div class="col-md-2">
-                <strong><h4>Excluir</h4></strong>
+                <strong><h6>Excluir</h6></strong>
             </div>
             <div class="col-md-8">
                 <strong><h4>Produto</h4></strong>
             </div>
             <div class="col-md-2">
-                <strong><h4>Qtde</h4></strong>
+                <h5>Qtde</h5>
             </div>
         </div>
         <c:if test="${Carrinho.itens.size() eq 0}">
@@ -47,16 +53,16 @@
             <c:forEach var="item" items="${Carrinho.itens}">
                 <div class="row">
                     <div class="col-md-2">
-                        <h4><a href="./removerProduto?item=${item.produto.idProduto}&">x</a></h4>
+                        <h7><a class="btn-danger" href='./removerProduto?item=${item.produto.idProduto}&'>X</a></h7>
                     </div>
                     <div class="col-md-8">
-                        <h4>${item.produto.nomeProduto}</h4>
+                        <h7>${item.produto.nomeProduto}</h7>
                     </div>
                     <div class="col-md-2">
-                        <h4>${item.m2}</h4>
+                        <h7>${item.m2}</h7>
                     </div>
                 </div>
-                
+
             </c:forEach>
             <c:if test="${Carrinho.itens.size() gt 0}">
                 <form role="form" action="finalizarCarrinho" method="post">
@@ -72,7 +78,7 @@
                     &nbsp;
                 </div>
                 <div class="col-md-8">
-                    <h3>Total R$ ${Carrinho.total}</h3>
+                    <h5>Total R$ ${Carrinho.total}</h5>
                 </div>
                 <div class="col-md-2">
                     &nbsp;
