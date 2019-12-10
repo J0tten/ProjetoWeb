@@ -21,6 +21,9 @@
 
     </head>
     <body>
+        <div>
+            Esse é o idUsuario: ${user.idUsuario}            
+        </div>
         <div class="row">
             <div class="col-md-2">
                 <strong><h4>Excluir</h4></strong>
@@ -53,7 +56,7 @@
                         <h4>${item.m2}</h4>
                     </div>
                 </div>
-                <form role="form" action="finalizarCompra" method="post">
+                <form role="form" action="finalizarCarrinho" method="post">
                     <button type="submit" class="btn btn-primary">
                         Finalizar Compra
                     </button>
