@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>.: Resultado Busca :.</title>
+        <title>.: Vitrine :.</title>
         <link rel="icon" href="./Imagens/Icon-folinha.jpg">
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -17,27 +17,36 @@
     </head>
 
     <body>
-        <h1>
-            Todos os Produtos:
-        </h1>
-        <div class="col-md-2">
-            <a href="./meucarrinho">Carrinho</a>  
-        </div>
-        <!-- row dos produtos -->
 
-        <c:forEach var="Produto" items="${Lista}">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-md-8">
-                    <a href="detalheProduto?idProduto=${Produto.idProduto}&nomeProduto=${Produto.nomeProduto}">${Produto.nomeProduto}</a>
+                <div class="col-md-12">
                     <h3>
-                        ${Produto.nomeProduto}
+                        Todos Produtos:
                     </h3>
-                    <h4> 
-                        R$/m2 ${Produto.valorM2} 
-                    </h4>
+
+                    <c:forEach var="Produto" items="${Lista}">
+                        <div class="card">
+                            <h5 class="card-header">
+                                <a href="detalheProduto?idProduto=${Produto.idProduto}&nomeProduto=${Produto.nomeProduto}">${Produto.nomeProduto}</a>
+                            </h5>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    Descrição do produto Bla bla bla mais imagem
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                R$ ${Produto.valorM2} /m²
+                            </div>
+                        </div> 
+                    </c:forEach>    
+                    <a href="./meucarrinho" class="btn btn-secondary" type="button">Carrinho</a>
                 </div>
             </div>
-        </c:forEach> 
+        </div>
 
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/scripts.js"></script>
     </body>
 </html>

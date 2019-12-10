@@ -24,7 +24,7 @@ public class DataSource {
 
     public DataSource() {
 
-        hostname = "localhost";
+        hostname = "187.3.122.200";
         port = 3306;
         database = "VeganWasher";
         username = "root";

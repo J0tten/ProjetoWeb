@@ -37,14 +37,14 @@
 							<label for="email">
 								Email
 							</label>
-							<input type="email" class="form-control" id="email" name='emailForn'/>
+							<input type="email" class="form-control" id="email" name='emailForn' required/>
 						</div>
 						<div class="form-group">
 							 
 							<label for="senha">
 								Senha
 							</label>
-							<input type="password" class="form-control" id="senha" name="senhaForn"/>
+							<input type="password" class="form-control" id="senha" name="senhaForn" required/>
 						</div>
 						<button type="submit" class="btn btn-primary">
 							Entrar

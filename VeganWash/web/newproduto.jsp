@@ -42,13 +42,13 @@
                             <label for="nome">
                                 Nome do seu produto
                             </label>
-                            <input type="text" class="form-control" id="nome" name="prodNome" />
+                            <input type="text" class="form-control" id="nome" name="prodNome"required />
                         </div>
                         <div class="form-group">
                             <label for="valorM2">
                                 Valor do Metro Quadrado
                             </label>
-                            <input type="text" class="form-control" id="valorM2" name="valorm2"/>
+                            <input type="text" class="form-control" id="valorM2" name="valorm2"required/>
                         </div>
                         <div class="form-group">
                             <select name="dropLavagem">

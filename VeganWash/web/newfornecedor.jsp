@@ -44,31 +44,31 @@
                             <label for="nome">
                                 Seu Nome
                             </label>
-                            <input type="text" class="form-control" id="nome" name="txtNome" />
+                            <input type="text" class="form-control" id="nome" name="txtNome"required />
                         </div>
                         <div class="form-group">
                             <label for="email">
                                 Seu Email
                             </label>
-                            <input type="email" class="form-control" id="email" name="txtEmail"/>
+                            <input type="email" class="form-control" id="email" name="txtEmail"required/>
                         </div>
                         <div class="form-group">
                             <label for="senha">
                                 Digite sua Senha
                             </label>
-                            <input type="password" class="form-control" id="senha" name="txtSenha"/>
+                            <input type="password" class="form-control" id="senha" name="txtSenha"required/>
                         </div>
                         <div class="form-group">
                             <label for="Telefone">
                                 Digite seu Telefone (Número)
                             </label>
-                            <input type="text" class="form-control" id="telefone" name="txtTelefone"/>
+                            <input type="text" class="form-control" id="telefone" name="txtTelefone"required/>
                         </div>
                         <div class="form-group">
                             <label for="cep">
                                 Digite o CPF
                             </label>
-                            <input type="text" class="form-control" id="cpf" name="txtCpf"/>
+                            <input type="text" class="form-control" id="cpf" name="txtCpf"required/>
                         </div>
                         <button type="submit" class="btn btn-primary">
                             Enviar Dados
