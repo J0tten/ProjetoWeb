@@ -41,7 +41,8 @@
                                 </h5>
                                 <div class="card-body">
                                     <p class="card-text">
-                                        Descrição do produto Bla bla bla mais imagem
+                                        Descrição do produto
+                                        The quick brown fox jumps over the lazy dog
                                     </p>
                                 </div>
                                 <div class="card-footer">
