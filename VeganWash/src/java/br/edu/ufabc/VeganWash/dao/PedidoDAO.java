@@ -46,7 +46,6 @@ public class PedidoDAO implements GenericDAO {
             stm.setInt(2, id);
             stm.setDouble(3, m2);
             stm.executeUpdate();
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!Chegouaqui"+stm);
             stm.close();
         } catch (Exception ex) {
             ex.printStackTrace();
