@@ -68,15 +68,15 @@ public class UsuarioDAO implements GenericDAO {
 
     @Override
     public void delete(Object o) {
-        try{
-            Usuario c =(Usuario) o;
+        try {
+            Usuario c = (Usuario) o;
             String delete = "DELETE FROM Usuario WHERE email = ?";
             PreparedStatement stmDelete = dataSource.getConnection().prepareCall(delete);
             stmDelete.setString(1, c.getEmail());
             stmDelete.executeUpdate();
             System.out.println("Usuário deleteado");
             stmDelete.close();
-        } catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
@@ -119,6 +119,35 @@ public class UsuarioDAO implements GenericDAO {
             ex.printStackTrace();
             return false;
         }
+    }
+
+    public Usuario read(String email, String senha) {
+        List<Object> result = null;
+        try {
+            String sql = "SELECT * FROM usuario where (email = ? and senha = ?)";
+
+            PreparedStatement stmUserRead = dataSource.getConnection().prepareStatement(sql);
+
+            System.out.println(email + senha);
+            stmUserRead.setString(1, email);
+            stmUserRead.setString(2, senha);
+            ResultSet rs = stmUserRead.executeQuery();
+            rs.next();
+            Usuario p = new Usuario();
+            p.setIdUsuario(rs.getInt("idUsuario"));
+            p.setNome(rs.getString("nome"));
+            p.setEmail(rs.getString("email"));
+            p.setSenha(rs.getString("senha"));
+            p.setTelefone(rs.getString("telefone"));
+
+            rs.close();
+            stmUserRead.close();
+            return p;
+        } catch (Exception ex) {
+            System.out.println("UsuarioReadBancoEmailSenha.READ - erro ao recuperar");
+            System.out.println(ex.getMessage());
+        }
+        return null;
     }
 
     @Override

@@ -6,25 +6,25 @@
 package br.edu.ufabc.VeganWash.controller;
 
 import br.edu.ufabc.VeganWash.dao.DataSource;
-import br.edu.ufabc.VeganWash.dao.GenericDAO;
-import br.edu.ufabc.VeganWash.dao.UsuarioDAO;
-import br.edu.ufabc.VeganWash.model.Endereco;
+import br.edu.ufabc.VeganWash.dao.PedidoDAO;
+import br.edu.ufabc.VeganWash.model.Carrinho;
+import br.edu.ufabc.VeganWash.model.ItemCarrinho;
+import br.edu.ufabc.VeganWash.model.Produto;
 import br.edu.ufabc.VeganWash.model.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Victor
  */
-public class LoginUsuarioServlet extends HttpServlet {
+public class FinalizarCarrinhoServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,6 +37,19 @@ public class LoginUsuarioServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet FinalizarCarrinhoServlet</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet FinalizarCarrinhoServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -65,33 +78,21 @@ public class LoginUsuarioServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String paginaDestino = "/login.jsp";
-        try {
-            String userEmail = request.getParameter("txtEmail");
-            String userSenha = request.getParameter("txtSenha");
-            Usuario usuario = new Usuario();
-            usuario.setEmail(userEmail);
-            usuario.setSenha(userSenha);
-
-            DataSource dataSource = new DataSource();
-            UsuarioDAO userDao = new UsuarioDAO(dataSource);
-            boolean status = userDao.Login(usuario);
-            if (status == true) {
-                paginaDestino = "/pesquisaprodutos.jsp";
-                System.out.println(userEmail+userSenha);
-                System.out.println(userDao.read(userEmail,userSenha).getIdUsuario());
-                request.getSession().setAttribute("user", userDao.read(userEmail, userSenha));
-            } else {
-                paginaDestino = "/loginusuario.jsp";
-            }
-            dataSource.getConnection().close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            paginaDestino = "/index.jsp";
-        } finally {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(paginaDestino);
-            dispatcher.forward(request, response);
+        Carrinho carrinho;
+        carrinho = (Carrinho) request.getSession().getAttribute("Carrinho");
+        DataSource dataSource = new DataSource();
+        PedidoDAO pedDao = new PedidoDAO(dataSource);
+        List<ItemCarrinho> it = carrinho.getItens();
+        Usuario usuario = (Usuario) request.getSession().getAttribute("user");
+        int idUser = usuario.getIdUsuario();
+        
+        for(int i=0; i<it.size(); i++){
+           pedDao.create(it.get(i).getProduto(), idUser, it.get(i).getM2());
         }
+        request.getSession().setAttribute("Carrinho", carrinho);
+
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/pedidofinalizado.jsp");
+        dispatcher.forward(request, response);
     }
 
     /**
