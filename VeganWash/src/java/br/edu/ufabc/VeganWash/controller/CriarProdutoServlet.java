@@ -58,9 +58,7 @@ public class CriarProdutoServlet extends HttpServlet {
             LimpezaDAO limpDao = new LimpezaDAO(dataSource);
             FornecedorDAO fornDao = new FornecedorDAO(dataSource);
             Limpeza dadosLimp = (Limpeza) limpDao.read(lavagem);
-            System.out.println(getLavagem+"FDP");
-            System.out.println(lavagem+"FDP1");
-            System.out.println(email+"FDP");
+
             
             
             Fornecedor dadosForn = (Fornecedor) fornDao.read(email);
