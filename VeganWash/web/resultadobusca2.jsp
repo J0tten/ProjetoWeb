@@ -33,9 +33,8 @@
                         Todos Produtos:
                     </h3>
 
-                  <div class="card-deck">
                     <c:forEach var="Produto" items="${Lista}">
-                        <div class="card mt-4">
+                        <div class="card">
                             <h5 class="card-header">
                                 <a href="detalheProduto?idProduto=${Produto.idProduto}&nomeProduto=${Produto.nomeProduto}">${Produto.nomeProduto}</a>
                             </h5>
@@ -48,10 +47,7 @@
                                 R$ ${Produto.valorM2} /m²
                             </div>
                         </div> 
-                    </c:forEach>   
-                 </div>   
-                    
-                    
+                    </c:forEach>    
                 </div>
             </div>
         </div>
