@@ -56,12 +56,15 @@
                         <h4>${item.m2}</h4>
                     </div>
                 </div>
+                
+            </c:forEach>
+            <c:if test="${Carrinho.itens.size() gt 0}">
                 <form role="form" action="finalizarCarrinho" method="post">
                     <button type="submit" class="btn btn-primary">
                         Finalizar Compra
                     </button>
-                </form>
-            </c:forEach>
+                </form>                
+            </c:if>
 
             <div class="row">
 
