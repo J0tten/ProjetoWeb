@@ -14,6 +14,7 @@
         <title>Carrinho!</title>
         <meta name="description" content="Source code generated using layoutit.com">
         <meta name="author" content="LayoutIt!">
+        <link rel="icon" href="./Imagens/Icon-folinha.jpg">
 
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
